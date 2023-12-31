@@ -4,6 +4,9 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
+-- Highlight column 80 to encourage writing better code
+vim.opt.colorcolumn:append('80')
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
