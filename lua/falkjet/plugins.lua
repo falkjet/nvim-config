@@ -15,6 +15,9 @@ return {
   -- Formatting
   'stevearc/conform.nvim',
 
+  -- Adds git related signs to the gutter, as well as utilities for managing changes
+  { 'lewis6991/gitsigns.nvim', config = true },
+
   {
     -- Surround
     'tpope/vim-surround',
@@ -46,7 +49,7 @@ return {
     },
   },
 
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',    opts = {} },
   { 'folke/neoconf.nvim' },
 
   {
