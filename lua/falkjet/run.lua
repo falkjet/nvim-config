@@ -95,6 +95,10 @@ local Neoconf = require 'neoconf'
 
 local function run_project()
   local cmd = Neoconf.get 'project.run_cmd'
+  if type(cmd) == 'nil' then
+    print("No command configured")
+    return
+  end
   if type(cmd) == 'string' then
     cmd = { 'sh', '-c', cmd }
   end
@@ -103,6 +107,10 @@ end
 
 local function run_project_in_background()
   local cmd = Neoconf.get 'project.run_cmd'
+  if type(cmd) == 'nil' then
+    print("No command configured")
+    return
+  end
   if type(cmd) == 'string' then
     cmd = { 'sh', '-c', cmd }
   end
