@@ -23,9 +23,9 @@ local function tab_terminal(cmd, opts)
   vim.cmd [[ tabnew ]]
   vim.opt.number = false
   if opts == nil or is_empty(opts) then
-    vim.fn.termopen(cmd)
+    return vim.fn.termopen(cmd)
   else
-    vim.fn.termopen(cmd, opts)
+    return vim.fn.termopen(cmd, opts)
   end
 
 
@@ -43,6 +43,21 @@ local filetypes = {
   python = {
     run_file = function()
       tab_terminal({ 'python', vim.fn.expand "%" })
+    end
+  },
+  maude = {
+    run_file = function()
+      tab_terminal(
+        { 'sh', '-c', 'echo "$0"; maude -no-banner "$0" #</dev/null', vim.fn.expand '%' },
+        { env = { MAUDE_LIB = '/usr/share/maude' }, stdin = nil }
+      )
+      vim.api.nvim_create_autocmd({ 'TermClose' }, {
+        buffer = vim.api.nvim_get_current_buf(),
+        callback = function()
+          vim.cmd [[ bw! ]]
+        end,
+      })
+      vim.cmd [[ startinsert ]]
     end
   }
 }
