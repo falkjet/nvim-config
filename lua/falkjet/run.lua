@@ -68,8 +68,8 @@ local function sh_cmd(opts)
   tab_terminal({ 'sh', '-c', opts.args })
 end
 
-vim.api.nvim_create_user_command('Sh', sh_cmd, { nargs = 1 })
-vim.api.nvim_create_user_command('SH', sh_cmd, { nargs = 1 })
+vim.api.nvim_create_user_command('Sh', sh_cmd, { nargs = 1, complete = 'shellcmd' })
+vim.api.nvim_create_user_command('SH', sh_cmd, { nargs = 1, complete = 'shellcmd' })
 
 
 -- Projects
