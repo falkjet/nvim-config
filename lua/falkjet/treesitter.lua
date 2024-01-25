@@ -10,7 +10,7 @@ vim.defer_fn(function()
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
-      disable = { 'latex', 'lua' },
+      disable = { 'latex', 'lua', 'markdown' },
     },
     indent = { enable = true },
     incremental_selection = {
