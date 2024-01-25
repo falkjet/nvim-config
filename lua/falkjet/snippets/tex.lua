@@ -22,11 +22,23 @@ local function in_mathzone()
   return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
 
-function is_start_of_line(line_to_cursor)
-  return string.match(line_to_cursor, '^[^%a]*mm')
-end
-
 return {
+  s({ trig = '!' },
+    fmta(
+      [[
+        \documentclass{article}
+
+        \title{<>}
+        \author{<>}
+
+        \begin{document}
+          \maketitle
+
+          <>
+        \end{document}
+      ]],
+      { i(1), i(2), i(0) }
+    )),
   s({ trig = 'env' },
     fmta(
       [[
@@ -63,7 +75,13 @@ return {
     end
   }, t '\\item '),
   s({ trig = '...', snippetType = 'autosnippet' }, t '\\ldots'),
-  s({ trig = 'mm', condition = is_start_of_line, snippetType = 'autosnippet' },
+  s({
+      trig = 'mm',
+      condition = function(line_to_cursor)
+        return string.match(line_to_cursor, '^[^%a]*mm')
+      end,
+      snippetType = 'autosnippet'
+    },
     fmta([[
       \begin{displaymath}
       <>
