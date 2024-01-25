@@ -21,6 +21,9 @@ local servers = {
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
     cmd = { "haskell-language-server-wrapper", "--lsp" },
   },
+  clangd = {
+    filetypes = { 'c', 'cpp', 'objcpp', 'cuda' },
+  },
 }
 
 local setup_without_mason = {
