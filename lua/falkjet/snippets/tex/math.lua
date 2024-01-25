@@ -75,7 +75,7 @@ return {
   ms('cal', fmta('\\mathcal{<>}', { i(1) })),
   ms('bb', fmta('\\mathbb{<>}', { i(1) })),
   ms('bf', fmta('\\mathbf{<>}', { i(1) })),
-  ms('pset', fmta('\\mathcal{P}(<>)', { i(1) })),
+  ms('pow', fmta('\\mathcal{P}(<>)', { i(1) })),
   ms('nat', t '\\mathbb{N}'),
   ms('set', fmta('\\{<>\\}', { i(1) })),
   ms('tup', fmta('\\langle <>\\rangle', { i(1) })),
