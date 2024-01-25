@@ -40,4 +40,8 @@ return {
   end, 1), i(0) })),
   s({ trig = "h2" }, fmta("## <>\n\n<>", { i(1), i(0) })),
   s({ trig = "h3" }, fmta("### <>\n\n<>", { i(1), i(0) })),
+  s({
+    trig = "- ",
+    condition = function(line_to_cursor) return string.match(line_to_cursor, '^%s*-%s*$') end,
+  }, t '  - ')
 }
