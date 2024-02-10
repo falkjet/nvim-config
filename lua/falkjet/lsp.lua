@@ -27,7 +27,9 @@ local servers = {
 }
 
 local setup_without_mason = {
-  'hls'
+  'hls',
+  'ocamllsp',
+  'zls',
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
