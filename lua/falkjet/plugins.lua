@@ -126,6 +126,7 @@ return {
 
 
   -- Languages
+  'purescript-contrib/purescript-vim',
   'alaviss/nim.nvim',
   'vim-scripts/maude.vim',
   'Joe-Davidson1802/templ.vim',
