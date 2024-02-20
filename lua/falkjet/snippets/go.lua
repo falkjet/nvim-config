@@ -139,5 +139,10 @@ return {
     func <>(<>) <>{
     <><>
     }
-  ]], { i(4), i(1), i(2), d(3, smartparen), t '\t', i(0) }))
+  ]], { i(4), i(1), i(2), d(3, smartparen), t '\t', i(0) })),
+  s({ trig = 'hf' }, fmta([[
+    func <>(w http.ResponseWriter, r *http.Request) {
+        <>
+    }
+  ]], { i(1), i(0) })),
 }
