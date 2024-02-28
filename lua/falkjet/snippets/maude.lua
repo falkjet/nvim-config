@@ -26,20 +26,20 @@ return {
     trig = 'var ',
     snippetType = 'autosnippet',
     condition = pattern_condition '^%s*var $',
-  }, fmta([[ var <> . ]], { i(0) })),
+  }, fmta('var <> .', { i(0) })),
   s({
     trig = 'vars ',
     snippetType = 'autosnippet',
     condition = pattern_condition '^%s*vars $',
-  }, fmta([[ vars <> . ]], { i(0) })),
+  }, fmta('vars <> .', { i(0) })),
   s({
     trig = 'eq ',
     snippetType = 'autosnippet',
     condition = pattern_condition '^%s*eq $',
-  }, fmta([[ eq <> . ]], { i(0) })),
+  }, fmta('eq <> .', { i(0) })),
   s({
     trig = 'op ',
     snippetType = 'autosnippet',
     condition = pattern_condition '^%s*op $',
-  }, fmta([[ op <> . ]], { i(0) })),
+  }, fmta('op <> .', { i(0) })),
 }
