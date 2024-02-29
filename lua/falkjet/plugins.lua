@@ -39,6 +39,13 @@ return {
     },
   },
   {
+    -- Debug Adapter Protocol
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
+    },
+  },
+  {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {

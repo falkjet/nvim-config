@@ -36,6 +36,7 @@ require 'falkjet.autopairs'
 require 'falkjet.run'
 require 'falkjet.harpoon'
 require 'falkjet.treesitter'
+require 'falkjet.dap'
 
 vim.filetype.add { extension = { cshtml = 'razor' } }
 
