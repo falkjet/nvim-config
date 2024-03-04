@@ -18,6 +18,35 @@ dap.adapters.lldb = {
   command = 'lldb-vscode',
 }
 
+dap.configurations.rust = {
+  {
+    name = "Rust debug",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ',
+        vim.fn.getcwd() .. '/target/debug/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  }
+}
+
+
+dap.configurations.c = {
+  {
+    name = "Rust debug",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ',
+        vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  }
+}
+
 vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = 'Visual' })
 
 vim.keymap.set('n', '<leader>du', function() dapui.toggle() end)
