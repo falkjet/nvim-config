@@ -10,7 +10,7 @@ local fmt = require 'luasnip.extras.fmt'.fmt
 local fmta = require 'luasnip.extras.fmt'.fmta
 local rep = require 'luasnip.extras'.rep
 
-function pattern_condition(pattern)
+local function pattern_condition(pattern)
   return function(line_to_cursor)
     return string.match(line_to_cursor, pattern)
   end
