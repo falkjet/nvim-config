@@ -24,12 +24,9 @@ local servers = {
   clangd = {
     filetypes = { 'c', 'cpp', 'objcpp', 'cuda' },
   },
-}
-
-local setup_without_mason = {
-  'hls',
-  'ocamllsp',
-  'zls',
+  ocamllsp = {},
+  zls = {},
+  gopls = {},
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -43,10 +40,7 @@ local on_attach = function(client, bufnr)
   lspformat.on_attach(client)
 
   local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
+    if desc then desc = 'LSP: ' .. desc end
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
@@ -74,10 +68,10 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
-  -- -- Create a command `:Format` local to the LSP buffer
-  -- vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-  --   vim.lsp.buf.format()
-  -- end, { desc = 'Format current buffer with LSP' })
+  -- Create a command `:LspFormat` local to the LSP buffer
+  vim.api.nvim_buf_create_user_command(bufnr, 'LspFormat', function(_)
+    vim.lsp.buf.format()
+  end, { desc = 'Format current buffer with LSP' })
 end
 
 -- Disable virtual text
@@ -92,8 +86,7 @@ neodev.setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
 
-
-for _, server_name in pairs(setup_without_mason) do
+for server_name, config in pairs(servers) do
   require 'lspconfig'[server_name].setup {
     capabilities = capabilities,
     on_attach = on_attach,
