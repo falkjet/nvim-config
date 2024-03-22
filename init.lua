@@ -28,7 +28,14 @@ require 'falkjet.harpoon'
 require 'falkjet.treesitter'
 require 'falkjet.dap'
 
-vim.filetype.add { extension = { cshtml = 'razor', maude = 'maude' } }
+vim.filetype.add {
+  extension = {
+    cshtml = 'razor',
+    maude = 'maude',
+    templ = 'templ',
+    tmpl = 'gohtmltmpl',
+  },
+}
 
 vim.keymap.set('n', 'mr', '<Plug>Csurround', { desc = 'Surround [R]eplace' })
 vim.keymap.set('n', 'md', '<Plug>Dsurround', { desc = 'Surround [D]elete' })
