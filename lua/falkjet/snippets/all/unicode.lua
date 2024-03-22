@@ -9,6 +9,7 @@ local d = ls.dynamic_node
 local fmt = require 'luasnip.extras.fmt'.fmt
 local fmta = require 'luasnip.extras.fmt'.fmta
 local rep = require 'luasnip.extras'.rep
+local unicode = require 'falkjet.unicode'
 
 return {
   s({ trig = '\\alpha', wordTrig = false }, t 'α'),
@@ -126,4 +127,13 @@ return {
   s('5/8', t '⅝'),
   s('7/8', t '⅞'),
   s('0/3', t '↉'),
+
+  s({ trig = '^n+1', wordTrig = false }, t 'ⁿ⁺¹'),
+  s({ trig = '^n-1', wordTrig = false }, t 'ⁿ⁺¹'),
+  s({ trig = '[\\^]([0-9+=n-])', regTrig = true, wordTrig = false, },
+    f(function(_, snip) return unicode.superscript[snip.captures[1]] end)),
+  s({ trig = '_([0-9+=-])', regTrig = true, wordTrig = false },
+    f(function(_, snip) return unicode.subscript[snip.captures[1]] end)),
+
+  s({ trig = 'tm', wordTrig = false }, t '™')
 }

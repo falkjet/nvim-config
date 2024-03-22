@@ -9,6 +9,7 @@ local d = ls.dynamic_node
 local fmt = require 'luasnip.extras.fmt'.fmt
 local fmta = require 'luasnip.extras.fmt'.fmta
 local rep = require 'luasnip.extras'.rep
+local unicode = require 'falkjet.unicode'
 
 local function pattern_condition(pattern)
   return function(line_to_cursor)
@@ -42,4 +43,13 @@ return {
     snippetType = 'autosnippet',
     condition = pattern_condition '^%s*op $',
   }, fmta('op <> .', { i(0) })),
+  s({
+    trig = '([A-Z])(%d)',
+    regTrig = true,
+    snippetType = 'autosnippet'
+  }, f(function(_, snip)
+    local var = snip.captures[1]
+    local n = snip.captures[2]
+    return var .. unicode.subscript[n]
+  end)),
 }
