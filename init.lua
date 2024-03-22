@@ -41,5 +41,31 @@ vim.keymap.set('', "<m-k>", "<cmd>TmuxNavigateUp<cr>", { desc = 'Pane Above' })
 vim.keymap.set('', "<m-l>", "<cmd>TmuxNavigateRight<cr>", { desc = 'Right Pane' })
 
 
+vim.g.vim_markdown_frontmatter = 1
+vim.g.vim_markdown_toml_frontmatter = 1
+vim.g.vim_markdown_math = 1
+
+vim.g.tex_flavor = 'latex'
+vim.g.vimtex_view_method = 'zathura'
+vim.g.vimtex_quickfix_mode = 0
+vim.o.conceallevel = 1
+vim.g.tex_conceal = 'abmgs'
+vim.g.vimtex_compiler_engine = 'lualatex'
+vim.g.vimtex_syntax_conceal = {
+  accents = 1,
+  cites = 1,
+  fancy = 1,
+  greek = 1,
+  ligatures = 1,
+  math_bounds = 0,
+  delimiters = 1,
+  math_fracs = 1,
+  math_super_sub = 1,
+  math_symbols = 1,
+  sections = 0,
+  spacing = 1,
+  styles = 1,
+}
+
 
 -- vim: ts=2 sts=2 sw=2 et

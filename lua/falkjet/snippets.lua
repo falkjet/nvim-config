@@ -1,8 +1,10 @@
 local luasnip = require 'luasnip'
 
 -- require 'luasnip.loaders.from_vscode'.lazy_load()
-require 'luasnip.loaders.from_lua'.lazy_load { paths = "~/.config/nvim/lua/falkjet/snippets/" }
+require 'luasnip.loaders.from_lua'.lazy_load {}
 
+luasnip.filetype_extend('markdown', { 'texmath' })
+luasnip.filetype_extend('tex', { 'texmath' })
 
 luasnip.config.setup {
   enable_autosnippets = true,

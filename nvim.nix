@@ -55,6 +55,7 @@ pkgs.neovim.override {
         vim-markdown
         wgsl-vim
         markdown-preview-nvim
+	vimtex
       ];
     };
   };
