@@ -47,6 +47,8 @@ vim.keymap.set('', "<m-j>", "<cmd>TmuxNavigateDown<cr>", { desc = 'Pane Below' }
 vim.keymap.set('', "<m-k>", "<cmd>TmuxNavigateUp<cr>", { desc = 'Pane Above' })
 vim.keymap.set('', "<m-l>", "<cmd>TmuxNavigateRight<cr>", { desc = 'Right Pane' })
 
+vim.g.go_doc_keywordprg_enabled = 0
+vim.g.go_def_mapping_enabled = 0
 
 vim.g.vim_markdown_frontmatter = 1
 vim.g.vim_markdown_toml_frontmatter = 1
