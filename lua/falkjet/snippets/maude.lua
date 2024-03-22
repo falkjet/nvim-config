@@ -23,6 +23,10 @@ return {
         <>
     endfm
   ]], { i(1), i(0) })),
+  s({ trig = 'enum ', snippetType = 'autosnippet' }, fmta([[
+    sort <> .
+    ops <> : <> [ctor] .
+  ]], { i(1), i(2), rep(1) })),
   s({
     trig = 'var ',
     snippetType = 'autosnippet',
