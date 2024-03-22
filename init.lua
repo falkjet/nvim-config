@@ -38,7 +38,7 @@ require 'falkjet.harpoon'
 require 'falkjet.treesitter'
 require 'falkjet.dap'
 
-vim.filetype.add { extension = { cshtml = 'razor' } }
+vim.filetype.add { extension = { cshtml = 'razor', maude = 'maude' } }
 
 vim.keymap.set('n', '<leader>gd', '<cmd>Gvdiffsplit<cr>', { desc = 'Diff current file' })
 -- vim: ts=2 sts=2 sw=2 et
