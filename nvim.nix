@@ -49,6 +49,12 @@ pkgs.neovim.override {
 
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
+
+        purescript-vim
+        vim-nftables
+        vim-markdown
+        wgsl-vim
+        markdown-preview-nvim
       ];
     };
   };
