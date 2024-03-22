@@ -45,6 +45,9 @@ local function var(name)
 end
 
 return {
+  ms('\\negall ', t '\\neg\\forall '),
+  ms('\\neg all ', t '\\neg\\forall '),
+  ms('\\forall not', t '\\forall\\neg'),
   ms('ff', fmta('\\frac{<>}{<>}', { i(1), i(2) })),
   ms('tt', fmta('\\text{<>}', { i(1) })),
   ms('tie', t '\\bowtie'),
@@ -83,6 +86,10 @@ return {
   ms('cc', t '\\subset'),
   ms('ce', t '\\subseteq'),
   ms('ø', t '\\emptyset'),
+  ms('exi', t '\\exists'),
+  ms('any', t '\\exists'),
+  ms('AA', t '\\forall '),
+  ms('all', t '\\forall'),
   s({ trig = 'snd', trigEngine = 'pattern', snippetType = 'autosnippet', wordTrig = false },
     t '^2'),
   s({
