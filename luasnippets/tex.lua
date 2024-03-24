@@ -23,6 +23,8 @@ local function in_mathzone()
 end
 
 return {
+  s('lualatex', t('% !TeX program = lualatex')),
+  s('root', t('% !TeX root = ')),
   s({ trig = '!' },
     fmta(
       [[
