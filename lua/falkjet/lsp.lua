@@ -27,6 +27,7 @@ local servers = {
   ocamllsp = {},
   zls = {},
   gopls = {},
+  nil_ls = {},
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
