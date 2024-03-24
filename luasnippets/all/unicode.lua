@@ -11,6 +11,10 @@ local fmta = require 'luasnip.extras.fmt'.fmta
 local rep = require 'luasnip.extras'.rep
 local unicode = require 'falkjet.unicode'
 
+local function not_forward_jumpable()
+  return not ls.locally_jumpable(1)
+end
+
 return {
   s({ trig = '\\alpha', wordTrig = false }, t 'α'),
   s({ trig = '\\beta', wordTrig = false }, t 'β'),
@@ -114,7 +118,7 @@ return {
   s('and', t '∧'),
   s('or', t '∨'),
   s({ trig = '<', wordTrig = false }, t '⟨'),
-  s({ trig = '>', wordTrig = false }, t '⟩'),
+  s({ trig = '>', wordTrig = false, condition = not_forward_jumpable }, t '⟩'),
   s('1/3', t '⅓'),
   s('2/3', t '⅔'),
   s('1/4', t '¼'),
