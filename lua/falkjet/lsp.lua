@@ -28,6 +28,7 @@ local servers = {
   zls = {},
   gopls = {},
   nil_ls = {},
+  rust_analyzer = {},
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
