@@ -14,6 +14,15 @@ pkgs.neovim.override {
           version = "1.0";
           src = ./.;
         })
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "loremipsum";
+          version = "0.2";
+          src = builtins.fetchGit{
+            url = "https://github.com/vim-scripts/loremipsum";
+            rev = "39354ae1c86c89bf36a4af7c6d4b9ca0c0a9eedf";
+          };
+        })
+
         vim-fugitive
         vim-rhubarb
         vim-surround
