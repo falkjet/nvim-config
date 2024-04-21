@@ -32,7 +32,12 @@ local function not_in_mathzone()
 end
 
 local function ms(trig, node)
-  return s({ trig = trig, condition = in_mathzone_no_backslash, snippetType = 'autosnippet' }, node)
+  return s({
+    trig = trig,
+    condition = in_mathzone_no_backslash,
+    snippetType = 'autosnippet',
+    wordTrig = not not trig:match('^%w')
+  }, node)
 end
 
 local function autobs(word)
@@ -54,6 +59,8 @@ return {
   autobs('times'),
   autobs('bot'),
   autobs('top'),
+  autobs('cup'),
+  autobs('cap'),
   ms('dot', t '\\cdot'),
   ms('int', fmta('\\int_{<>}^{<>}', { i(1), i(2) })),
   ms('sum', fmta('\\sum_{<>}^{<>}', { i(1), i(2) })),
@@ -61,6 +68,15 @@ return {
   ms('...', t '\\ldots'),
   ms('not in', t '\\notin'),
   ms('notin', t '\\notin'),
+  ms('<>', t '\\lozenge'),
+  ms('[]', t '\\square'),
+  ms('always', t '\\square'),
+  ms('alw', t '\\square'),
+  ms('eventually', t '\\lozenge'),
+  ms('evn', t '\\lozenge'),
+  ms('wuntil', t '\\mathcal{W}'),
+  ms('until', t '\\mathcal{U}'),
+  ms('|=', t '\\models'),
   ms('\\neg in', t '\\notin'),
   ms('\\negin', t '\\notin'),
   ms('in ', t '\\in '),
