@@ -59,7 +59,12 @@ local filetypes = {
       })
       vim.cmd [[ startinsert ]]
     end
-  }
+  },
+  html = {
+    run_file = function()
+      require 'falkjet.live-server'.open(vim.fn.expand '%')
+    end
+  },
 }
 
 local function run_file()
