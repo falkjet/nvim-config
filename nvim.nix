@@ -22,6 +22,15 @@ pkgs.neovim.override {
             rev = "39354ae1c86c89bf36a4af7c6d4b9ca0c0a9eedf";
           };
         })
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "git-worktree-nvim";
+          version = "e9baf2d2f9908509459daf7b760fc9d4b4d84588";
+          src = builtins.fetchGit{
+            url = "https://github.com/ThePrimeagen/git-worktree.nvim";
+            rev = "e9baf2d2f9908509459daf7b760fc9d4b4d84588";
+          };
+        })
+
 
         vim-fugitive
         vim-rhubarb
