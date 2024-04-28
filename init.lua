@@ -78,4 +78,23 @@ vim.g.vimtex_syntax_conceal = {
 }
 
 
+require 'oil'.setup {
+  win_options = {
+    wrap = false,
+  },
+  skip_confirm_for_simple_edits = true,
+}
+
+vim.keymap.set('n', '-', '<cmd>Oil<cr>', { desc = "Open Oil" })
+
+vim.api.nvim_create_autocmd("UIEnter", {
+  pattern = "*",
+  nested = true,
+  callback = function()
+    if #vim.fn.argv() == 0 then
+      require 'oil'.open()
+    end
+  end
+})
+
 -- vim: ts=2 sts=2 sw=2 et

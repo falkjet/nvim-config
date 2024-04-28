@@ -33,6 +33,9 @@ pkgs.neovim.override {
         tabular
         gitsigns-nvim
 
+        nvim-web-devicons
+        oil-nvim
+
         nvim-lspconfig
         neodev-nvim
         lsp-format-nvim
