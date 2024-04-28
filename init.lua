@@ -28,6 +28,7 @@ require 'falkjet.harpoon'
 require 'falkjet.treesitter'
 require 'falkjet.dap'
 require 'falkjet.html-indent'
+require 'falkjet.folding'
 
 vim.filetype.add {
   extension = {
