@@ -37,6 +37,8 @@ pkgs.neovim.override {
         vim-surround
         vim-sleuth
 
+        comment-nvim
+
         nvim-autopairs
         harpoon
         tabular
@@ -83,4 +85,3 @@ pkgs.neovim.override {
     };
   };
 }
-
