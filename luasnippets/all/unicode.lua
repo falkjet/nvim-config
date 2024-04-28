@@ -92,6 +92,7 @@ return {
   s({ trig = '\\circ', wordTrig = false }, t '∘'),
   s({ trig = '\\exists', wordTrig = false }, t '∃'),
   s({ trig = '\\forall', wordTrig = false }, t '∀'),
+  s({ trig = '...', wordTrig = false }, t '…'),
 
   s('|-', t '⊢'),
   s('|=', t '⊧'),
