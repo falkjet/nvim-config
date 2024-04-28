@@ -29,6 +29,23 @@ local servers = {
   gopls = {},
   nil_ls = {},
   rust_analyzer = {},
+  pylsp = {},
+  psalm = {},
+  intelephense = {},
+  roc_language_server = {},
+  denols = {},
+  tsserver = {},
+  svelte = {},
+}
+
+require 'lspconfig.configs'.roc_language_server = {
+  default_config = {
+    single_file_support = true,
+    cmd = { 'roc_language_server' },
+    filetypes = { 'roc' },
+    root_dir = require 'lspconfig'.util.find_git_ancestor,
+    settings = {},
+  }
 }
 
 vim.api.nvim_create_autocmd('LspAttach', {
