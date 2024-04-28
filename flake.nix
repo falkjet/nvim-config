@@ -2,7 +2,10 @@
   description = "A neovim heavily configured neovim";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/neovim-nightly-overlay";
+    };
   };
   outputs = { self, nixpkgs, neovim-nightly-overlay }:
     let pkgs = import nixpkgs {
