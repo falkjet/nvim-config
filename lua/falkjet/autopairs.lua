@@ -17,7 +17,7 @@ npairs.remove_rule('[')
 npairs.add_rule(
   Rule('[', ']')
   :with_pair(function(opts) return not in_mathzone() end)
-  :with_move(cond.done())
+  :with_move(function(opts) return opts.char == ']' end)
   :with_del(cond.done())
 )
 
