@@ -10,9 +10,16 @@ local fmt = require 'luasnip.extras.fmt'.fmt
 local fmta = require 'luasnip.extras.fmt'.fmta
 local rep = require 'luasnip.extras'.rep
 local unicode = require 'falkjet.unicode'
+local cond = require 'luasnip.extras.conditions'
 
-local function not_forward_jumpable()
+local not_forward_jumpable = cond.make_condition(function()
   return not ls.locally_jumpable(1)
+end)
+
+local function filetype(ft)
+  return cond.make_condition(function()
+    return vim.o.filetype == ft
+  end)
 end
 
 return {
@@ -119,7 +126,7 @@ return {
   s('and', t '∧'),
   s('or', t '∨'),
   s({ trig = '<', wordTrig = false }, t '⟨'),
-  s({ trig = '>', wordTrig = false, condition = not_forward_jumpable }, t '⟩'),
+  s({ trig = '>', wordTrig = false, condition = not_forward_jumpable * -filetype("html") }, t '⟩'),
   s('1/3', t '⅓'),
   s('2/3', t '⅔'),
   s('1/4', t '¼'),
