@@ -32,6 +32,7 @@ pkgs.neovim.override {
         harpoon
         tabular
         gitsigns-nvim
+        git-worktree-nvim
 
         nvim-web-devicons
         oil-nvim

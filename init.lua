@@ -78,6 +78,21 @@ vim.g.vimtex_syntax_conceal = {
 }
 
 
+local git_worktree = require 'git-worktree'
+git_worktree.setup {
+  autopush = false
+}
+
+require 'telescope'.load_extension('git_worktree')
+
+vim.api.nvim_create_user_command("CreateWorktree", function()
+  require('telescope').extensions.git_worktree.create_git_worktree()
+end, {})
+
+vim.api.nvim_create_user_command("Worktree", function()
+  require('telescope').extensions.git_worktree.git_worktrees()
+end, {})
+
 require 'oil'.setup {
   win_options = {
     wrap = false,
