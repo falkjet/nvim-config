@@ -12,6 +12,7 @@ vim.cmd [[ autocmd FileType vim noremap <buffer> q <cmd>q<cr> ]]
 vim.cmd [[ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u ]]
 
 require 'neoconf'.setup {}
+require 'neodev'.setup {}
 require 'fidget'.setup {}
 require 'gitsigns'.setup {}
 require 'which-key'.setup {}

@@ -74,6 +74,9 @@ pkgs.neovim.override {
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
 
+        neodev-nvim
+        neoconf-nvim
+
         purescript-vim
         vim-nftables
         vim-markdown
