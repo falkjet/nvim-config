@@ -36,6 +36,7 @@ local servers = {
   denols = {},
   tsserver = {},
   svelte = {},
+  jsonls = {},
 }
 
 require 'lspconfig.configs'.roc_language_server = {
