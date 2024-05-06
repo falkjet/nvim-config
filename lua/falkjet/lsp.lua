@@ -37,6 +37,7 @@ local servers = {
   tsserver = {},
   svelte = {},
   jsonls = {},
+  templ = {},
 }
 
 require 'lspconfig.configs'.roc_language_server = {
