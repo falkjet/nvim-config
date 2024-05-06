@@ -31,6 +31,7 @@ require 'falkjet.dap'
 require 'falkjet.html-indent'
 require 'falkjet.folding'
 require 'falkjet.dev'
+require 'falkjet.termsplit'.setup {}
 
 vim.filetype.add {
   extension = {
@@ -46,10 +47,10 @@ vim.keymap.set('n', 'md', '<Plug>Dsurround', { desc = 'Surround [D]elete' })
 vim.keymap.set('v', 'ms', '<Plug>VSurround', { desc = '[S]urround' })
 vim.keymap.set('n', '<leader>gd', '<cmd>Gvdiffsplit<cr>', { desc = '[D]iff current file' })
 
-vim.keymap.set('', "<m-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = 'Left Pane' })
-vim.keymap.set('', "<m-j>", "<cmd>TmuxNavigateDown<cr>", { desc = 'Pane Below' })
-vim.keymap.set('', "<m-k>", "<cmd>TmuxNavigateUp<cr>", { desc = 'Pane Above' })
-vim.keymap.set('', "<m-l>", "<cmd>TmuxNavigateRight<cr>", { desc = 'Right Pane' })
+vim.keymap.set({ 'n', 'i', 't' }, "<m-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = 'Left Pane' })
+vim.keymap.set({ 'n', 'i', 't' }, "<m-j>", "<cmd>TmuxNavigateDown<cr>", { desc = 'Pane Below' })
+vim.keymap.set({ 'n', 'i', 't' }, "<m-k>", "<cmd>TmuxNavigateUp<cr>", { desc = 'Pane Above' })
+vim.keymap.set({ 'n', 'i', 't' }, "<m-l>", "<cmd>TmuxNavigateRight<cr>", { desc = 'Right Pane' })
 
 vim.g.go_doc_keywordprg_enabled = 0
 vim.g.go_def_mapping_enabled = 0
