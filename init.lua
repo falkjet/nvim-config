@@ -116,4 +116,6 @@ vim.api.nvim_create_autocmd("UIEnter", {
   end
 })
 
+vim.cmd.vunmap('crr')
+
 -- vim: ts=2 sts=2 sw=2 et
