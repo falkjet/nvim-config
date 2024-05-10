@@ -5,17 +5,22 @@ local neodev = require 'neodev'
 
 local servers = {
   lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+      },
+    }
   },
   emmet_ls = {
     filetypes = {
       'html', 'javascript', 'typescript', 'javascriptreact',
       'typescriptreact', 'svelte', 'gohtmltmpl', 'htmldjango', 'vue',
       'templ', 'astro', 'php', 'css', 'xml', 'razor'
-    }
+    },
+    init_options = {
+      jsx = { options = { ['markup.attributes'] = { class = 'class' } } },
+    },
   },
   hls = {
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
@@ -33,7 +38,10 @@ local servers = {
   psalm = {},
   intelephense = {},
   roc_language_server = {},
-  denols = {},
+  denols = {
+    root_dir = require 'lspconfig.util'.root_pattern('deno.json', 'deno.jsonc'),
+    single_file_support = false,
+  },
   tsserver = {},
   svelte = {},
   jsonls = {},
@@ -108,11 +116,15 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
 
 for server_name, config in pairs(servers) do
+  local server = servers[server_name] or {}
   require 'lspconfig'[server_name].setup {
+    single_file_support = server.single_file_support,
     capabilities = capabilities,
     on_attach = on_attach,
-    settings = servers[server_name],
-    filetypes = (servers[server_name] or {}).filetypes
+    settings = server.settings,
+    filetypes = server.filetypes,
+    root_dir = server.root_dir,
+    init_options = server.init_options,
   }
 end
 
