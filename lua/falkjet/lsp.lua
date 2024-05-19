@@ -16,7 +16,7 @@ local servers = {
     filetypes = {
       'html', 'javascript', 'typescript', 'javascriptreact',
       'typescriptreact', 'svelte', 'gohtmltmpl', 'htmldjango', 'vue',
-      'templ', 'astro', 'php', 'css', 'xml', 'razor'
+      'templ', 'astro', 'php', 'css', 'xml', 'razor', 'heex',
     },
     init_options = {
       jsx = { options = { ['markup.attributes'] = { class = 'class' } } },
@@ -46,6 +46,9 @@ local servers = {
   svelte = {},
   jsonls = {},
   templ = {},
+  gleam = {},
+  erlangls = {},
+  elixirls = { cmd = { 'elixir-ls' } },
 }
 
 require 'lspconfig.configs'.roc_language_server = {
@@ -125,6 +128,7 @@ for server_name, config in pairs(servers) do
     filetypes = server.filetypes,
     root_dir = server.root_dir,
     init_options = server.init_options,
+    cmd = server.cmd,
   }
 end
 
