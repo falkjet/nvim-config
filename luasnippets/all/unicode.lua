@@ -74,6 +74,7 @@ return {
   s({ trig = '\\equiv', wordTrig = false }, t '≡'),
   s({ trig = '\\le', wordTrig = false }, t '≤'),
   s({ trig = '\\ge', wordTrig = false }, t '≥'),
+  s({ trig = '\\gtrless', wordTrig = false }, t '≷'),
   s({ trig = '\\subseteq', wordTrig = false }, t '⊆'),
   s({ trig = '\\subset', wordTrig = false }, t '⊂'),
   s({ trig = '\\prec', wordTrig = false }, t '≺'),
