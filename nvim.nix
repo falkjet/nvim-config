@@ -32,6 +32,7 @@ pkgs.neovim.override {
         })
 
 
+        vim-repeat
         vim-fugitive
         vim-rhubarb
         vim-surround
@@ -52,6 +53,7 @@ pkgs.neovim.override {
         nvim-lspconfig
         neodev-nvim
         lsp-format-nvim
+        trouble-nvim
 
         nvim-dap
         nvim-dap-ui
