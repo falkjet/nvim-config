@@ -22,19 +22,21 @@ local function tab_terminal(cmd, opts)
   end
   vim.cmd [[ tabnew ]]
   vim.opt.number = false
+
+  local result
   if opts == nil or is_empty(opts) then
-    return vim.fn.termopen(cmd)
+    result = vim.fn.termopen(cmd)
   else
-    return vim.fn.termopen(cmd, opts)
+    result = vim.fn.termopen(cmd, opts)
   end
-
-
 
   if background then
     vim.api.nvim_set_current_tabpage(tabpage)
   else
     vim.cmd [[ startinsert ]]
   end
+
+  return result
 end
 
 local filetypes = {
