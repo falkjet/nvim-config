@@ -67,6 +67,7 @@ pkgs.neovim.override {
         which-key-nvim
         neoconf-nvim
 
+        catppuccin-nvim
         onedark-nvim
         lualine-nvim
 
