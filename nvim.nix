@@ -38,6 +38,7 @@ pkgs.neovim.override {
         vim-sleuth
 
         comment-nvim
+        obsidian-nvim
 
         nvim-autopairs
         harpoon

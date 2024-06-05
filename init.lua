@@ -32,6 +32,7 @@ require 'falkjet.html-indent'
 require 'falkjet.folding'
 require 'falkjet.dev'
 require 'falkjet.termsplit'.setup {}
+require 'falkjet.obsidian'
 
 vim.filetype.add {
   extension = {
