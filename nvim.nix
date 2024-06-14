@@ -31,6 +31,14 @@ pkgs.neovim.override {
           };
         })
 
+        (pkgs.vimUtils.buildVimPlugin {
+          pname = "vim-suda";
+          version = "b97fab52f9cdeabe2bbb5eb98d82356899f30829";
+          src = builtins.fetchGit{
+            url = "https://github.com/lambdalisue/vim-suda";
+            rev = "b97fab52f9cdeabe2bbb5eb98d82356899f30829";
+          };
+        })
 
         vim-repeat
         vim-fugitive
