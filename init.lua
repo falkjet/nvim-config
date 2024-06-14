@@ -119,4 +119,7 @@ vim.api.nvim_create_autocmd("UIEnter", {
 
 vim.cmd.vunmap('crr')
 
+vim.keymap.set('i', 'jj', '<esc>', {})
+vim.keymap.set('i', '<esc>', '<nop>', {}) -- disable real esc key
+
 -- vim: ts=2 sts=2 sw=2 et
