@@ -15,6 +15,7 @@ function M.termsplit()
   au("BufEnter", function() vim.cmd.startinsert() end)
   au("BufWinEnter", function() vim.cmd.startinsert() end)
   vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
   vim.fn.termopen("$SHELL", { buf = buf, })
 end
 

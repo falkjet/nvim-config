@@ -3,6 +3,7 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- Highlight column 80 to encourage writing better code
 vim.opt.colorcolumn:append('80')
