@@ -87,6 +87,7 @@ pkgs.neovim.override {
 
         nvim-treesitter.withAllGrammars
         nvim-treesitter-textobjects
+        treesj
 
         neodev-nvim
         neoconf-nvim

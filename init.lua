@@ -17,6 +17,7 @@ require 'neodev'.setup {}
 require 'fidget'.setup {}
 require 'gitsigns'.setup {}
 require 'which-key'.setup {}
+require 'treesj'.setup {}
 require 'falkjet.theme'
 require 'falkjet.options'
 require 'falkjet.telescope'
@@ -34,7 +35,6 @@ require 'falkjet.templ-indent'
 require 'falkjet.folding'
 require 'falkjet.dev'
 require 'falkjet.termsplit'.setup {}
-
 require 'falkjet.obsidian'
 
 vim.filetype.add {
