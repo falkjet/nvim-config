@@ -1,5 +1,6 @@
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevelstart = 100
 vim.opt.foldtext = [[ luaeval('foldtext_function')() ]]
 
 vim.keymap.set("n", "z0", function() vim.o.foldlevel = 0 end)
@@ -11,7 +12,7 @@ vim.keymap.set("n", "z5", function() vim.o.foldlevel = 5 end)
 vim.keymap.set("n", "z6", function() vim.o.foldlevel = 6 end)
 vim.keymap.set("n", "z7", function() vim.o.foldlevel = 7 end)
 vim.keymap.set("n", "z8", function() vim.o.foldlevel = 8 end)
-vim.keymap.set("n", "z9", function() vim.o.foldlevel = 9 end)
+vim.keymap.set("n", "z9", function() vim.o.foldlevel = 100 end)
 
 ---@param expr string
 local function isfolded(expr)
