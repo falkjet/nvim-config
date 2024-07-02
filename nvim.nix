@@ -40,6 +40,8 @@ pkgs.neovim.override {
           };
         })
 
+
+        vim-sexp
         vim-repeat
         vim-fugitive
         vim-rhubarb

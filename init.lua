@@ -86,6 +86,13 @@ vim.g.vimtex_syntax_conceal = {
 }
 
 
+vim.g.sexp_mappings = {
+  sexp_swap_list_backward    = '',
+  sexp_swap_list_forward     = '',
+  sexp_swap_element_backward = '',
+  sexp_swap_element_forward  = '',
+}
+
 local git_worktree = require 'git-worktree'
 git_worktree.setup {
   autopush = false
