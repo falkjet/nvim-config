@@ -5,6 +5,7 @@ require 'luasnip.loaders.from_lua'.lazy_load {}
 
 luasnip.filetype_extend('markdown', { 'texmath' })
 luasnip.filetype_extend('tex', { 'texmath' })
+luasnip.filetype_extend('templ', { 'go' })
 
 luasnip.config.setup {
   enable_autosnippets = true,

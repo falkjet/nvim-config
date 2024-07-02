@@ -10,6 +10,7 @@ vim.g.maplocalleader = ' '
 vim.cmd [[ autocmd FileType help,qf noremap <buffer> q <cmd>q<cr> ]]
 vim.cmd [[ autocmd FileType vim noremap <buffer> q <cmd>q<cr> ]]
 vim.cmd [[ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u ]]
+vim.cmd [[ autocmd BufWritePost *.templ silent! !templ generate % ]]
 
 require 'neoconf'.setup {}
 require 'neodev'.setup {}
@@ -29,9 +30,11 @@ require 'falkjet.harpoon'
 require 'falkjet.treesitter'
 require 'falkjet.dap'
 require 'falkjet.html-indent'
+require 'falkjet.templ-indent'
 require 'falkjet.folding'
 require 'falkjet.dev'
 require 'falkjet.termsplit'.setup {}
+
 require 'falkjet.obsidian'
 
 vim.filetype.add {
