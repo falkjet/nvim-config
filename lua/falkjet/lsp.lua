@@ -49,6 +49,7 @@ local servers = {
   gleam = {},
   erlangls = {},
   elixirls = { cmd = { 'elixir-ls' } },
+  ols = {},
 }
 
 require 'lspconfig.configs'.roc_language_server = {
