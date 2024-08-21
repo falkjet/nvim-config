@@ -56,6 +56,8 @@ vim.keymap.set({ 'n', 'i', 't' }, "<m-j>", "<cmd>TmuxNavigateDown<cr>", { desc =
 vim.keymap.set({ 'n', 'i', 't' }, "<m-k>", "<cmd>TmuxNavigateUp<cr>", { desc = 'Pane Above' })
 vim.keymap.set({ 'n', 'i', 't' }, "<m-l>", "<cmd>TmuxNavigateRight<cr>", { desc = 'Right Pane' })
 
+vim.g.zig_fmt_autosave = 0
+
 vim.g.go_doc_keywordprg_enabled = 0
 vim.g.go_def_mapping_enabled = 0
 
