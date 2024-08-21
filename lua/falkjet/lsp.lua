@@ -28,6 +28,7 @@ local servers = {
   },
   clangd = {
     filetypes = { 'c', 'cpp', 'objcpp', 'cuda' },
+    root_dir = require 'lspconfig'.util.find_git_ancestor,
   },
   serve_d = {},
   ocamllsp = {},
