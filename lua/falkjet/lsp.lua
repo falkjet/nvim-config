@@ -50,6 +50,37 @@ local servers = {
   erlangls = {},
   elixirls = { cmd = { 'elixir-ls' } },
   ols = {},
+  efm = {
+    init_options = {
+      documentFormatting = true,
+    },
+    settings = {
+      -- ['root-markers'] = { '.git' },
+      rootMarkers = { '.git' },
+      languages = {
+        nix = {
+          { formatCommand = 'nixfmt', formatStdin = true },
+        },
+        json = {
+          { formatCommand = 'fixjson' },
+        },
+        jsonc = {
+          { formatCommand = 'fixjson' },
+        },
+        python = {
+          { formatCommand = 'isort --quiet -', formatStdin = true },
+        },
+      }
+    },
+    filetypes = {
+      'nix',
+      'json',
+      'jsonc',
+      'python',
+    },
+    single_file_support = true,
+    cmd = { 'efm-langserver', '-logfile', '/home/falk/efm-langserver.log' }
+  },
 }
 
 require 'lspconfig.configs'.roc_language_server = {
