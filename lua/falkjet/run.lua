@@ -44,7 +44,7 @@ local filetypes = {
   markdown = { run_file = vimcmd [[ MarkdownPreview ]] },
   python = {
     run_file = function()
-      tab_terminal({ 'python', vim.fn.expand "%" })
+      tab_terminal { 'python', vim.fn.expand '%' }
     end
   },
   maude = {
@@ -67,6 +67,8 @@ local filetypes = {
       require 'falkjet.live-server'.open(vim.fn.expand '%')
     end
   },
+  bqn = { run_file = function() tab_terminal { 'cbqn', vim.fn.expand '%' } end },
+  racket = { run_file = function() tab_terminal { 'racket', vim.fn.expand '%' } end },
 }
 
 local function run_file()
@@ -75,12 +77,12 @@ local function run_file()
     print('No filetype detected')
     return
   end
-  local run_file = (filetypes[ft] or {}).run_file
-  if run_file == nil then
+  local run_fn = (filetypes[ft] or {}).run_file
+  if run_fn == nil then
     print("don't know how to run '" .. ft .. "' file")
     return
   end
-  run_file()
+  run_fn()
 end
 
 vim.api.nvim_create_user_command('RunFile', run_file, { nargs = 0 })
