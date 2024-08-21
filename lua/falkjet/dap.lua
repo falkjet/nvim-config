@@ -15,7 +15,7 @@ dap.adapters.codelldb = {
 dap.adapters.lldb = {
   name = 'lldb',
   type = 'executable',
-  command = 'lldb-vscode',
+  command = 'lldb-dap',
 }
 
 dap.configurations.rust = {
@@ -35,7 +35,21 @@ dap.configurations.rust = {
 
 dap.configurations.c = {
   {
-    name = "Rust debug",
+    name = "C debug debug",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ',
+        vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  }
+}
+
+dap.configurations.cpp = {
+  {
+    name = "C++ debug debug",
     type = "lldb",
     request = "launch",
     program = function()
