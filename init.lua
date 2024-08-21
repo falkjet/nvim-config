@@ -43,6 +43,7 @@ vim.filetype.add {
     maude = 'maude',
     templ = 'templ',
     tmpl = 'gohtmltmpl',
+    bqn = 'bqn',
   },
 }
 
