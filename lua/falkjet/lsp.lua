@@ -81,6 +81,7 @@ local servers = {
     single_file_support = true,
     cmd = { 'efm-langserver', '-logfile', '/home/falk/efm-langserver.log' }
   },
+  elmls = {},
 }
 
 require 'lspconfig.configs'.roc_language_server = {
