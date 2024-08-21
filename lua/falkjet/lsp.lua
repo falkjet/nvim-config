@@ -29,6 +29,7 @@ local servers = {
   clangd = {
     filetypes = { 'c', 'cpp', 'objcpp', 'cuda' },
   },
+  serve_d = {},
   ocamllsp = {},
   zls = {},
   gopls = {},
