@@ -1,8 +1,6 @@
 { pkgs }:
-let
-  rcfile = ./init.lua;
-in
-pkgs.neovim.override {
+let rcfile = ./init.lua;
+in pkgs.neovim.override {
   configure = {
     customRC = ''
       luafile ${rcfile}
@@ -17,7 +15,7 @@ pkgs.neovim.override {
         (pkgs.vimUtils.buildVimPlugin {
           pname = "loremipsum";
           version = "0.2";
-          src = builtins.fetchGit{
+          src = builtins.fetchGit {
             url = "https://github.com/vim-scripts/loremipsum";
             rev = "39354ae1c86c89bf36a4af7c6d4b9ca0c0a9eedf";
           };
@@ -25,7 +23,7 @@ pkgs.neovim.override {
         (pkgs.vimUtils.buildVimPlugin {
           pname = "git-worktree-nvim";
           version = "e9baf2d2f9908509459daf7b760fc9d4b4d84588";
-          src = builtins.fetchGit{
+          src = builtins.fetchGit {
             url = "https://github.com/ThePrimeagen/git-worktree.nvim";
             rev = "e9baf2d2f9908509459daf7b760fc9d4b4d84588";
           };
@@ -34,12 +32,11 @@ pkgs.neovim.override {
         (pkgs.vimUtils.buildVimPlugin {
           pname = "vim-suda";
           version = "b97fab52f9cdeabe2bbb5eb98d82356899f30829";
-          src = builtins.fetchGit{
+          src = builtins.fetchGit {
             url = "https://github.com/lambdalisue/vim-suda";
             rev = "b97fab52f9cdeabe2bbb5eb98d82356899f30829";
           };
         })
-
 
         vim-sexp
         vim-repeat
@@ -85,7 +82,19 @@ pkgs.neovim.override {
         telescope-nvim
         telescope-ui-select-nvim
 
-        nvim-treesitter.withAllGrammars
+        (nvim-treesitter.withPlugins (_:
+          nvim-treesitter.allGrammars ++ [
+            (pkgs.tree-sitter.buildGrammar {
+              language = "bqn";
+              version = "8c62b746924398304c8fa1aa18393c3124d1e50d";
+              src = pkgs.fetchFromGitHub {
+                owner = "shnarazk";
+                repo = "tree-sitter-bqn";
+                rev = "8c62b746924398304c8fa1aa18393c3124d1e50d";
+                sha256 = "sha256-jK0zn7DWzy2yfYOX1ZBoGOC7QBrcp4PHWnaOKaDL9ws=";
+              };
+            })
+          ]))
         nvim-treesitter-textobjects
         treesj
 
@@ -97,8 +106,8 @@ pkgs.neovim.override {
         vim-markdown
         wgsl-vim
         markdown-preview-nvim
-	vim-go
-	vimtex
+        vim-go
+        vimtex
       ];
     };
   };
