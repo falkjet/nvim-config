@@ -36,6 +36,7 @@ require 'falkjet.folding'
 require 'falkjet.dev'
 require 'falkjet.termsplit'.setup {}
 require 'falkjet.obsidian'
+require 'falkjet.bqn'
 
 vim.filetype.add {
   extension = {
