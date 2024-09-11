@@ -66,4 +66,61 @@ return {
     local n = snip.captures[2]
     return var .. unicode.subscript[n]
   end)),
+  s('List', fmta([[
+    sort <name>List .
+    subsort <name_copy> <lt> <name_copy>List .
+    op <id> : -<gt> <name_copy>List .
+    op _<sep>_ : <name_copy>List <name_copy>List -<gt> <name_copy>List [ctor assoc id: <id_copy>] .
+  ]], {
+    name = i(1),
+    name_copy = rep(1),
+    id = i(2),
+    id_copy = rep(2),
+    lt = t '<',
+    gt = t '>',
+    sep = i(3),
+  })),
+  s('Set', fmta([[
+    sort <name>Set .
+    subsort <name_copy> <lt> <name_copy>Set .
+    op <id> : -<gt> <name_copy>Set .
+    op _<sep>_ : <name_copy>Set <name_copy>Set -<gt> <name_copy>Set [ctor assoc comm id: <id_copy>] .
+  ]], {
+    name = i(1),
+    name_copy = rep(1),
+    id = i(2),
+    id_copy = rep(2),
+    lt = t '<',
+    gt = t '>',
+    sep = i(3),
+  })),
+  s({ trig = 'oidset', snippetType = 'autosnippet' }, fmt([[
+    omod OID-SET is
+      sort OidSet .
+      subsort Oid < OidSet .
+      op none : -> OidSet [ctor] .
+      op _;_ : OidSet OidSet -> OidSet [ctor assoc comm id: none] .
+    endom
+  ]], {})),
+  s({ trig = 'multicast', snippetType = 'autosnippet' }, fmt([[
+    omod MULTICAST is
+      including OID-SET + MESSAGE-WRAPPER .
+
+      op multicast_from_to_ : MsgContent Oid OidSet -> Msg [ctor] .
+
+      var M : MsgContent .   vars SENDER ARECEIVER : Oid .
+      var OTHER-RECEIVERS : OidSet .
+
+      eq multicast M from SENDER to none = none .
+      eq multicast M from SENDER to ARECEIVER ; OTHER-RECEIVERS =
+            (msg M from SENDER to ARECEIVER)
+            (multicast M from SENDER to OTHER-RECEIVERS) .
+    endom
+  ]], {})),
+  s({ trig = 'messagewrapper', snippetType = 'autosnippet' }, fmt([[
+    omod MESSAGE-WRAPPER is
+      sort MsgContent .     --- message content, application-specific
+      op msg_from_to_ : MsgContent Oid Oid -> Msg [ctor] .
+    endom
+  ]], {})),
 }
