@@ -81,7 +81,7 @@ local servers = {
       'python',
     },
     single_file_support = true,
-    cmd = { 'efm-langserver', '-logfile', '/home/falk/efm-langserver.log' }
+    cmd = { 'efm-langserver' }
   },
   elmls = {},
   nushell = {},
