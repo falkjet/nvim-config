@@ -125,6 +125,9 @@ in pkgs.neovim.override {
         which-key-nvim
         neoconf-nvim
 
+        conjure
+        cmp-conjure
+
         catppuccin-nvim
         onedark-nvim
         lualine-nvim
