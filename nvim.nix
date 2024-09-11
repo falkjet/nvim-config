@@ -99,7 +99,6 @@ in pkgs.neovim.override {
         comment-nvim
         obsidian-nvim
 
-        nvim-autopairs
         harpoon
         tabular
         gitsigns-nvim
