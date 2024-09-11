@@ -39,6 +39,22 @@ in pkgs.neovim.override {
         })
 
         (pkgs.vimUtils.buildVimPlugin {
+          pname = "tree-sitter-bqn";
+          version = "8c62b746924398304c8fa1aa18393c3124d1e50d";
+          src = pkgs.runCommand "tree-sitter-bqn-src" { } ''
+            mkdir --parents $out/queries
+            cp -r ${
+              pkgs.fetchFromGitHub {
+                owner = "shnarazk";
+                repo = "tree-sitter-bqn";
+                rev = "8c62b746924398304c8fa1aa18393c3124d1e50d";
+                sha256 = "sha256-jK0zn7DWzy2yfYOX1ZBoGOC7QBrcp4PHWnaOKaDL9ws=";
+              }
+            }/queries $out/queries/bqn
+          '';
+        })
+
+        (pkgs.vimUtils.buildVimPlugin {
           pname = "tree-sitter-nu";
           version = "0bb9a602d9bc94b66fab96ce51d46a5a227ab76c";
           src = pkgs.fetchFromGitHub {
