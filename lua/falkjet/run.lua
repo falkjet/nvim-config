@@ -22,6 +22,7 @@ local function tab_terminal(cmd, opts)
   end
   vim.cmd [[ tabnew ]]
   vim.opt.number = false
+  vim.opt.relativenumber = false
 
   local result
   if opts == nil or is_empty(opts) then
