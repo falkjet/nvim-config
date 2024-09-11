@@ -84,6 +84,7 @@ local servers = {
     cmd = { 'efm-langserver' }
   },
   elmls = {},
+  jdtls = {},
   nushell = {},
 }
 
