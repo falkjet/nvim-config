@@ -96,6 +96,8 @@ in pkgs.neovim.override {
         vim-surround
         vim-sleuth
 
+        ultimate-autopair-nvim
+
         comment-nvim
         obsidian-nvim
 
