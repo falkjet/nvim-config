@@ -60,6 +60,8 @@ vim.keymap.set({ 'n', 'i', 't' }, "<m-j>", "<cmd>TmuxNavigateDown<cr>", { desc =
 vim.keymap.set({ 'n', 'i', 't' }, "<m-k>", "<cmd>TmuxNavigateUp<cr>", { desc = 'Pane Above' })
 vim.keymap.set({ 'n', 'i', 't' }, "<m-l>", "<cmd>TmuxNavigateRight<cr>", { desc = 'Right Pane' })
 
+vim.g['g:conjure#client#fennel#aniseed#aniseed_module_prefix'] = 'aniseed'
+
 vim.g.zig_fmt_autosave = 0
 
 vim.g.go_doc_keywordprg_enabled = 0
@@ -103,7 +105,12 @@ vim.g.sexp_mappings = {
   sexp_emit_tail_element     = '<M-S-k>',
 }
 
-vim.g.sexp_filetypes = 'clojure,scheme,lisp,timl,racket'
+vim.keymap.set('i', '<M-S-l>', '<c-o><Plug>(sexp_capture_next_element)')
+vim.keymap.set('i', '<M-S-h>', '<c-o><Plug>(sexp_capture_prev_element)')
+vim.keymap.set('i', '<M-S-j>', '<c-o><Plug>(sexp_emit_head_element)')
+vim.keymap.set('i', '<M-S-k>', '<c-o><Plug>(sexp_emit_tail_element)')
+
+vim.g.sexp_filetypes = 'clojure,scheme,lisp,timl,racket,fennel'
 
 local git_worktree = require 'git-worktree'
 git_worktree.setup {
