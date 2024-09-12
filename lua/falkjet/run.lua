@@ -1,3 +1,5 @@
+local typst = require 'falkjet.typst'
+
 local function vimcmd(cmd)
   return function()
     vim.cmd(cmd)
@@ -70,6 +72,12 @@ local filetypes = {
   },
   bqn = { run_file = function() tab_terminal { 'cbqn', vim.fn.expand '%' } end },
   racket = { run_file = function() tab_terminal { 'racket', vim.fn.expand '%' } end },
+  typst = {
+    run_file = function()
+      typst.run_file()
+      typst.view_file()
+    end
+  }
 }
 
 local function run_file()
