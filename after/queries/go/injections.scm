@@ -1,3 +1,4 @@
+;; extends
 (call_expression
   function:
   (selector_expression
