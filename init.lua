@@ -114,7 +114,15 @@ vim.keymap.set('i', '<M-S-k>', '<c-o><Plug>(sexp_emit_tail_element)')
 vim.g.sexp_filetypes = 'clojure,scheme,lisp,timl,racket,fennel'
 
 local ultimate_autopair = require 'ultimate-autopair'
-ultimate_autopair.setup {}
+ultimate_autopair.setup {
+  cr = {
+    enable = true,
+    autoclose = true,
+    conf = { cond = function (fn)
+      return vim.o.ft ~= 'fennel' and vim.o.ft ~= 'clojure' and not fn.in_lisp()
+    end }
+  }
+}
 
 local git_worktree = require 'git-worktree'
 git_worktree.setup {

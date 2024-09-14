@@ -143,6 +143,7 @@ in pkgs.neovim.override {
         neodev-nvim
         neoconf-nvim
 
+        fennel-vim
         purescript-vim
         vim-nftables
         vim-markdown
