@@ -158,8 +158,6 @@ vim.api.nvim_create_autocmd("UIEnter", {
   end
 })
 
-vim.cmd.vunmap('crr')
-
 local function toggle_conceal()
   vim.opt.conceallevel = vim.opt.conceallevel:get() == 2 and 0 or 2
 end
