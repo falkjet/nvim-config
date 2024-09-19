@@ -60,6 +60,9 @@ vim.keymap.set({ 'n', 'i', 't' }, "<m-j>", "<cmd>TmuxNavigateDown<cr>", { desc =
 vim.keymap.set({ 'n', 'i', 't' }, "<m-k>", "<cmd>TmuxNavigateUp<cr>", { desc = 'Pane Above' })
 vim.keymap.set({ 'n', 'i', 't' }, "<m-l>", "<cmd>TmuxNavigateRight<cr>", { desc = 'Right Pane' })
 
+vim.keymap.set('n', ']f', '<cmd>cnext<cr>', { desc = "Next item in quickfix list" })
+vim.keymap.set('n', '[f', '<cmd>cprev<cr>', { desc = "Previous item in quickfix list" })
+
 vim.g['g:conjure#client#fennel#aniseed#aniseed_module_prefix'] = 'aniseed'
 
 vim.g.zig_fmt_autosave = 0
@@ -118,7 +121,7 @@ ultimate_autopair.setup {
   cr = {
     enable = true,
     autoclose = true,
-    conf = { cond = function (fn)
+    conf = { cond = function(fn)
       return vim.o.ft ~= 'fennel' and vim.o.ft ~= 'clojure' and not fn.in_lisp()
     end }
   }
