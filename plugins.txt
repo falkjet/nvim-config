@@ -1,0 +1,84 @@
+# This file is managed both by manually adding plugins and by an automated tool
+# plugins can be added by adding a repository path. eg.
+#
+#     https://codeberg.org/9yokuro/kachi.vim
+#
+# If the plugin is downloaded from github, the shorthand user/repo can be used
+# eg.
+#
+#     tpope/vim-fugitive
+#
+# To specify a version, add a colon followed by the hash of the git revision. If
+# no version is specified, then this file will be updated to specify the latest
+# revision when the plugins are installed
+
+# Packer is the packagemanager used when not using nix
+wbthomason/packer.nvim:ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3
+
+# Dependencies
+nvim-neotest/nvim-nio:a428f309119086dc78dd4b19306d2d67be884eee
+j-hui/fidget.nvim:d855eed8a06531a7e8fd0684889b2943f373c469
+nvim-lua/plenary.nvim:2d9b06177a975543726ce5c73fca176cedbffe9d
+
+# Navigation
+nvim-telescope/telescope.nvim:df534c3042572fb958586facd02841e10186707c
+ThePrimeagen/harpoon:1bc17e3e42ea3c46b33c0bbad6a880792692a1b3
+
+# External tool integration
+christoomey/vim-tmux-navigator:a9b52e7d36114d40350099f254b5f299a35df978
+epwalsh/obsidian.nvim:14e0427bef6c55da0d63f9a313fd9941be3a2479
+lambdalisue/vim-suda:b97fab52f9cdeabe2bbb5eb98d82356899f30829
+
+# IDE features
+rcarriga/nvim-dap-ui:ffa89839f97bad360e78428d5c740fdad9a0ff02
+mfussenegger/nvim-dap:7ff6936010b7222fea2caea0f67ed77f1b7c60dd
+folke/neoconf.nvim:3a3ae3858ffe11abbd9dc24617cb81ae232a7df0
+folke/neodev.nvim:46aa467dca16cf3dfe27098042402066d2ae242d
+lukas-reineke/lsp-format.nvim:47de35b54ec95bb049f52016632394b914d4d9e9
+neovim/nvim-lspconfig:d141895d1d9f41048fff201d62a2d6e96d299e32
+PaterJason/cmp-conjure:8c9a88efedc0e5bf3165baa6af8a407afe29daf6
+hrsh7th/nvim-cmp:ae644feb7b67bf1ce4260c231d1d4300b19c6f30
+hrsh7th/cmp-nvim-lsp:39e2eda76828d88b773cc27a3f61d2ad782c922d
+tpope/vim-sleuth:be69bff86754b1aa5adcbb527d7fcd1635a84080
+nvim-treesitter/nvim-treesitter:5a2ff8b7ca5470b1011ed82ef3fdd53139ffc467
+
+# User interface
+nvim-telescope/telescope-ui-select.nvim:6e51d7da30bd139a6950adf2a47fda6df9fa06d2
+folke/which-key.nvim:8badb359f7ab8711e2575ef75dfe6fbbd87e4821
+stevearc/oil.nvim:ccab9d5e09e2d0042fbbe5b6bd05e82426247067
+nvim-tree/nvim-web-devicons:19d257cf889f79f4022163c3fbb5e08639077bd8
+
+# Editing
+Wansmer/treesj:0d81326b5afd36babe7dd480aabbb0b05f33e688
+nvim-treesitter/nvim-treesitter-textobjects:b91c98afa6c42819aea6cbc1ba38272f5456a5cf
+godlygeek/tabular:12437cd1b53488e24936ec4b091c9324cafee311
+L3MON4D3/LuaSnip:e808bee352d1a6fcf902ca1a71cee76e60e24071
+tpope/vim-repeat:65846025c15494983dafe5e3b46c8f88ab2e9635
+tpope/vim-surround:3d188ed2113431cf8dac77be61b842acb64433d9
+guns/vim-sexp:14464d4580af43424ed8f2614d94e62bfa40bb4d
+vim-scripts/loremipsum:39354ae1c86c89bf36a4af7c6d4b9ca0c0a9eedf
+altermo/ultimate-autopair.nvim:ff21db642847840db183b9421ab3d89795a7fbba
+numToStr/Comment.nvim:e30b7f2008e52442154b66f7c519bfd2f1e32acb
+
+
+# VCS Plugins (mostly git)
+lewis6991/gitsigns.nvim:863903631e676b33e8be2acb17512fdc1b80b4fb
+tpope/vim-fugitive:d4877e54cef67f5af4f950935b1ade19ed6b7370
+tpope/vim-rhubarb:ee69335de176d9325267b0fd2597a22901d927b1
+ThePrimeagen/git-worktree.nvim:f247308e68dab9f1133759b05d944569ad054546
+
+# Theming
+catppuccin/nvim:7be452ee067978cdc8b2c5f3411f0c71ffa612b9
+nvim-lualine/lualine.nvim:b431d228b7bbcdaea818bdc3e25b8cdbe861f056
+navarasu/onedark.nvim:fae34f7c635797f4bf62fb00e7d0516efa8abe37
+
+# Programming language support
+Olical/conjure:6d2bc7f7b24c2c43d54f263bee7b9b08aef5d1a1
+bakpakin/fennel.vim:30b9beabad2c4f09b9b284caf5cd5666b6b4dc89
+purescript-contrib/purescript-vim:82348352e6568fcc0385bd7c99a8ead3a479feea
+nfnty/vim-nftables:26f8a506c6f3e41f1e4a8d6aa94c9a79a666bbff
+preservim/vim-markdown:8f6cb3a6ca4e3b6bcda0730145a0b700f3481b51
+DingDean/wgsl.vim:fdf91e11243266dfe923fc08c2fc9749429bc5aa
+iamcco/markdown-preview.nvim:a923f5fc5ba36a3b17e289dc35dc17f66d0548ee
+fatih/vim-go:ac1fb9611de435d80a6badcf8482cb1428449b10
+lervag/vimtex:a4db0ee3271f58a08596ba853ea1e167f41ff9d6 # Latex plugin

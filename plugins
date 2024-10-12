@@ -1,0 +1,283 @@
+#!/usr/bin/env lua
+
+local Plugin = {}
+function Plugin.new(args)
+    return setmetatable(args, {
+        __index = Plugin,
+        __tostring = Plugin.tostring
+    })
+end
+
+function Plugin.tostring(self)
+    local repo =
+        self.repo:match 'https://github.com/(.*)'
+        or self.repo
+
+    return string.format("%s%s%s%s",
+        repo,
+        self.rev and ':' or '', self.rev or '',
+        self.comment)
+end
+
+function Plugin.update(self)
+    local proc = io.popen('git ls-remote ' .. self.repo .. ' --tags HEAD')
+    if proc == nil then
+        return nil
+    end
+    for line in proc:lines() do
+        self.rev = line:match '[0-9a-f]+'
+        return
+    end
+end
+
+function Plugin.parse(line)
+    local repo, comment = line:match '^%s*([^#]*[^ \t#])(.*)'
+    if repo == nil then
+        return nil
+    end
+    local rev = nil
+
+    -- Maybe the rev is already written to the config file
+    local r, t = repo:match '(.*):([0-9a-f]+)'
+    if r and t then
+        repo = r
+        rev = t
+    end
+
+
+    if repo:match '^[%a%d_-]+/[%a%d.-]+$' then
+        repo = string.format('https://github.com/%s', repo)
+    end
+    return Plugin.new {
+        repo = repo, rev = rev, comment = comment
+    }
+end
+
+function Plugin.name(self)
+    return string.match(self.repo, '[^/]+$')
+end
+
+function Plugin.install(self, plugins_dir)
+    local proc = io.popen([[
+        read repo
+        read path
+        if [ ! -e "$path" ]; then
+            git clone "$repo" "$path";
+        fi
+    ]], 'w')
+
+    if proc == nil then
+        return
+    end
+
+    proc:write(self.repo .. '\n')
+    proc:write(plugins_dir .. '/' .. self:name() .. '\n')
+    return function()
+        proc:close()
+    end
+end
+
+local PluginsFile = {}
+function PluginsFile.new(table)
+    return setmetatable(table, { __index = PluginsFile })
+end
+
+function PluginsFile.read(filename)
+    filename = filename or 'plugins.txt'
+    local file = io.open(filename)
+    if file == nil then
+        return nil
+    end
+
+    local result = {}
+    local plugins = {}
+    for line in file:lines() do
+        local plugin = Plugin.parse(line)
+        if plugin then
+            result[#result + 1] = plugin
+            plugins[#plugins + 1] = plugin
+        else
+            result[#result + 1] = line
+        end
+    end
+
+    file:close()
+    return PluginsFile.new {
+        filename = filename,
+        _lines = result,
+        plugins = plugins,
+    }
+end
+
+function PluginsFile.lines(self)
+    local i = 1
+    return function()
+        local value = self._lines[i]
+        if value then
+            i = i + 1
+            return tostring(value)
+        end
+    end
+end
+
+function PluginsFile.save(self)
+    local file = io.open(self.filename, "w")
+    if file == nil then
+        return
+    end
+    for line in self:lines() do
+        file:write(line .. '\n')
+    end
+    file:close()
+end
+
+function PluginsFile.ensure_rev(self)
+    for _, plugin in ipairs(self.plugins) do
+        if plugin.rev == nil then
+            plugin:update()
+        end
+    end
+end
+
+function PluginsFile.install(self, plugins_dir)
+    local closefns = {}
+    for i, plugin in ipairs(self.plugins) do
+        closefns[i] = plugin:install(plugins_dir)
+    end
+    return function()
+        for _, fn in ipairs(closefns) do
+            fn()
+        end
+    end
+end
+
+local M = {
+    Plugin,
+    PluginsFile,
+}
+
+
+local function find_paths(options)
+    local paths = {}
+    paths.xdg_config_home =
+        os.getenv 'XDG_CONFIG_HOME' or
+        os.getenv 'HOME' .. '/.config'
+
+    paths.xdg_data_home =
+        os.getenv 'XDG_DATA_HOME' or
+        os.getenv 'HOME' .. '/.local/share'
+
+    local nvim_appname = os.getenv 'NVIM_APPNAME' or 'nvim'
+
+    paths.plugins_file =
+        options.plugins_file or
+        (paths.xdg_config_home .. '/' .. nvim_appname .. '/plugins.txt')
+
+    paths.plugins_dir =
+        options.plugins_dir or
+        (paths.xdg_data_home .. '/' .. nvim_appname .. '/site/pack/plugins')
+
+    paths.start_dir = paths.plugins_dir .. '/start'
+
+    return paths
+end
+
+local function mkdir(dirname)
+    local proc = io.popen([[
+        read dir
+        mkdir -p "$dir"
+    ]], 'w')
+    if proc == nil then
+        return
+    end
+    proc:write(dirname)
+    proc:close()
+end
+
+-- Command line interface
+local function printf(str, ...)
+    print(string.format(str, ...))
+end
+
+local commands = {}
+function commands.install(_, options)
+    local paths = find_paths(options)
+
+    local plugins = PluginsFile.read(paths.plugins_file)
+    if plugins == nil then
+        printf('failed to read plugins file: %s', paths.plugins_file)
+        return
+    end
+    mkdir(paths.start_dir)
+
+
+    local close_start = plugins:install(paths.start_dir)
+    close_start()
+end
+
+function commands.info(_, options)
+    local paths = find_paths(options)
+
+    for k, v in pairs(paths) do
+        print(k, v)
+    end
+end
+
+function commands.clean(_, _)
+    print("No yet implemented")
+end
+
+function commands.update(_, _)
+    print("No yet implemented")
+end
+
+local help = [[usage ./plugins [options] subcommand")
+
+subcommands:
+    install      Download all plugins to plugins dir
+    info         Display the different paths used by plugins
+    clean        Remove all downloaded plugins
+    update       Update the specified plugins
+
+options:
+    -h, --help   Display this message and exit]]
+
+
+local function main()
+    local plugins = PluginsFile.read()
+    if plugins == nil then
+        print("Failed to read plugins file")
+        return
+    end
+
+    plugins:ensure_rev()
+    plugins:save()
+
+    local positional = {}
+    local options = {}
+    for _, a in ipairs(arg) do
+        positional[#positional + 1] = a
+        if a == '-h' or a == '--help' then
+            print(help)
+            return
+        end
+    end
+    if #positional == 0 then
+        print("No command specified")
+        return
+    end
+
+    local command = commands[positional[1]]
+    if not command then
+        printf("Unknown command %s", positional[1])
+        return
+    end
+
+    command(positional, options)
+end
+
+if pcall(debug.getlocal, 4, 1) then
+    return M
+else
+    main()
+end
