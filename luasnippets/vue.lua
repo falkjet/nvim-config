@@ -11,8 +11,8 @@ local fmta = require 'luasnip.extras.fmt'.fmta
 local rep = require 'luasnip.extras'.rep
 
 return {
-  s({ trig = 'comp' },
-    fmt([[
+	s({ trig = 'comp' },
+		fmt([[
       <script setup>
         {}
       </script>
@@ -25,8 +25,8 @@ return {
 
       </style>
     ]], { i(0) })),
-  s({ trig = 'comp:ts' },
-    fmt([[
+	s({ trig = 'comp:ts' },
+		fmt([[
       <script setup lang="ts">
         {}
       </script>

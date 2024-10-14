@@ -9,10 +9,10 @@ vim.keymap.set('n', '<leader>hh', harpoon_ui.toggle_quick_menu, { desc = 'File U
 vim.keymap.set('n', '<leader>hc', harpoon_cmdui.toggle_quick_menu, { desc = '[C]ommand UI' })
 
 for i = 1, 10 do
-  local k = '<a-' .. tostring(i % 10) .. '>'
-  local desc = 'Harpoon goto file ' .. i
-  local function action()
-    harpoon_ui.nav_file(i)
-  end
-  vim.keymap.set({ 'n', 't', 'i', 'v' }, k, action, { desc = desc })
+	local k = '<a-' .. tostring(i % 10) .. '>'
+	local desc = 'Harpoon goto file ' .. i
+	local function action()
+		harpoon_ui.nav_file(i)
+	end
+	vim.keymap.set({ 'n', 't', 'i', 'v' }, k, action, { desc = desc })
 end

@@ -4,61 +4,61 @@ local dapui = require 'dapui'
 dapui.setup {}
 
 dap.adapters.codelldb = {
-  type = 'server',
-  port = "${port}",
-  executable = {
-    command = 'codelldb',
-    args = { "--port", "${port}" },
-  }
+	type = 'server',
+	port = "${port}",
+	executable = {
+		command = 'codelldb',
+		args = { "--port", "${port}" },
+	}
 }
 
 dap.adapters.lldb = {
-  name = 'lldb',
-  type = 'executable',
-  command = 'lldb-dap',
+	name = 'lldb',
+	type = 'executable',
+	command = 'lldb-dap',
 }
 
 dap.configurations.rust = {
-  {
-    name = "Rust debug",
-    type = "codelldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ',
-        vim.fn.getcwd() .. '/target/debug/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-  }
+	{
+		name = "Rust debug",
+		type = "codelldb",
+		request = "launch",
+		program = function()
+			return vim.fn.input('Path to executable: ',
+				vim.fn.getcwd() .. '/target/debug/', 'file')
+		end,
+		cwd = '${workspaceFolder}',
+		stopOnEntry = false,
+	}
 }
 
 
 dap.configurations.c = {
-  {
-    name = "C debug debug",
-    type = "lldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ',
-        vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-  }
+	{
+		name = "C debug debug",
+		type = "lldb",
+		request = "launch",
+		program = function()
+			return vim.fn.input('Path to executable: ',
+				vim.fn.getcwd() .. '/', 'file')
+		end,
+		cwd = '${workspaceFolder}',
+		stopOnEntry = false,
+	}
 }
 
 dap.configurations.cpp = {
-  {
-    name = "C++ debug debug",
-    type = "lldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ',
-        vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-  }
+	{
+		name = "C++ debug debug",
+		type = "lldb",
+		request = "launch",
+		program = function()
+			return vim.fn.input('Path to executable: ',
+				vim.fn.getcwd() .. '/', 'file')
+		end,
+		cwd = '${workspaceFolder}',
+		stopOnEntry = false,
+	}
 }
 
 vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = 'Visual' })

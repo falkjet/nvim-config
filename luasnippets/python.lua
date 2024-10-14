@@ -11,26 +11,26 @@ local fmta = require 'luasnip.extras.fmt'.fmta
 local rep = require 'luasnip.extras'.rep
 
 local function get_visual(_, parent)
-  if #parent.snippet.env.LS_SELECT_RAW > 0 then
-    return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
-  else
-    return sn(nil, i(1))
-  end
+	if #parent.snippet.env.LS_SELECT_RAW > 0 then
+		return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
+	else
+		return sn(nil, i(1))
+	end
 end
 
 local function get_indented_visual(_, parent)
-  local visual = parent.snippet.env.LS_SELECT_RAW
-  if #visual > 0 then
-    return sn(nil, i(1, visual))
-  else
-    return sn(nil, t '')
-  end
+	local visual = parent.snippet.env.LS_SELECT_RAW
+	if #visual > 0 then
+		return sn(nil, i(1, visual))
+	else
+		return sn(nil, t '')
+	end
 end
 
 
 
 return {
-  s('main', fmta([[
+	s('main', fmta([[
     def main():
         <><>
 

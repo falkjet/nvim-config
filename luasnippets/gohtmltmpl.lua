@@ -13,12 +13,12 @@ local rep = require 'luasnip.extras'.rep
 
 
 return {
-  s({ trig = 'def' }, fmta([[
+	s({ trig = 'def' }, fmta([[
     {{ define "<>" }}
         <>
     {{ end }}
   ]], { i(1), i(0) })),
-  s({ trig = 'tm' }, fmta([[
+	s({ trig = 'tm' }, fmta([[
     {{ template "<>" <> }}
   ]], { i(1), i(2, '.') })),
 }

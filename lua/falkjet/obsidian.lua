@@ -1,12 +1,12 @@
 local obsidian = require 'obsidian'
 
 obsidian.setup {
-  workspaces = {
-    {
-      name = 'Obsidian Vault',
-      path = '~/Documents/Obsidian Vault'
-    },
-  },
+	workspaces = {
+		{
+			name = 'Obsidian Vault',
+			path = '~/Documents/Obsidian Vault'
+		},
+	},
 }
 
 vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<cr>', { desc = 'Open Obsidian' })
