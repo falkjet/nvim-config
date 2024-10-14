@@ -28,6 +28,7 @@ ThePrimeagen/harpoon:1bc17e3e42ea3c46b33c0bbad6a880792692a1b3
 christoomey/vim-tmux-navigator:a9b52e7d36114d40350099f254b5f299a35df978
 epwalsh/obsidian.nvim:14e0427bef6c55da0d63f9a313fd9941be3a2479
 lambdalisue/vim-suda:b97fab52f9cdeabe2bbb5eb98d82356899f30829
+wakatime/vim-wakatime:f699e30ca1ba0c7f316847316fd0ba19d3ee51c1
 
 # IDE features
 rcarriga/nvim-dap-ui:ffa89839f97bad360e78428d5c740fdad9a0ff02
