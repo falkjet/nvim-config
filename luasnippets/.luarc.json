@@ -1,0 +1,13 @@
+{
+    "diagnostics": {
+        "globals": [
+            "s",
+            "fmta",
+            "sn",
+            "f",
+            "d",
+            "i",
+            "t"
+        ]
+    }
+}
