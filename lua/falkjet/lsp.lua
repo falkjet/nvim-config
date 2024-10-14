@@ -71,6 +71,7 @@ local servers = {
         },
         python = {
           { formatCommand = 'isort --quiet -', formatStdin = true },
+          { formatCommand = 'autopep8' }
         },
       }
     },
