@@ -98,21 +98,16 @@ vim.g.vimtex_syntax_conceal = {
 }
 
 
-vim.g.sexp_mappings = {
-  sexp_swap_list_backward    = '',
-  sexp_swap_list_forward     = '',
-  sexp_swap_element_backward = '',
-  sexp_swap_element_forward  = '',
-  sexp_capture_next_element  = '<M-S-l>',
-  sexp_capture_prev_element  = '<M-S-h>',
-  sexp_emit_head_element     = '<M-S-j>',
-  sexp_emit_tail_element     = '<M-S-k>',
+local sexp = require 'treesitter-sexp'
+sexp.setup {
+  enabled = true,
+  set_cursor = false,
 }
 
-vim.keymap.set('i', '<M-S-l>', '<c-o><Plug>(sexp_capture_next_element)')
-vim.keymap.set('i', '<M-S-h>', '<c-o><Plug>(sexp_capture_prev_element)')
-vim.keymap.set('i', '<M-S-j>', '<c-o><Plug>(sexp_emit_head_element)')
-vim.keymap.set('i', '<M-S-k>', '<c-o><Plug>(sexp_emit_tail_element)')
+vim.keymap.set({ 'i', 'n' }, '<M-S-l>', '<cmd>TSSexp slurp_right<cr>')
+vim.keymap.set({ 'i', 'n' }, '<M-S-h>', '<cmd>TSSexp slurp_left<cr>')
+vim.keymap.set({ 'i', 'n' }, '<M-S-j>', '<cmd>TSSexp barf_left<cr>')
+vim.keymap.set({ 'i', 'n' }, '<M-S-k>', '<cmd>TSSexp barf_right<cr>')
 
 vim.g.sexp_filetypes = 'clojure,scheme,lisp,timl,racket,fennel'
 
