@@ -52,10 +52,19 @@ local filetypes = {
   },
   maude = {
     run_file = function()
-      tab_terminal(
-        { 'sh', '-c', 'echo "$0"; maude -no-banner "$0" #</dev/null', vim.fn.expand '%' },
-        { env = { MAUDE_LIB = '/usr/share/maude' }, stdin = nil }
-      )
+      tab_terminal {
+        'sh',
+        '-c',
+        [[
+          export MAUDE_LIB=/usr/share/maude
+          echo "$0"
+          maude -no-banner "$0" 0</dev/null
+          echo PRESS ENTER TO CONTINUE
+          read
+        ]],
+        vim.fn.expand '%',
+      }
+
       vim.api.nvim_create_autocmd({ 'TermClose' }, {
         buffer = vim.api.nvim_get_current_buf(),
         callback = function()
@@ -98,7 +107,7 @@ vim.api.nvim_create_user_command('RunFile', run_file, { nargs = 0 })
 vim.keymap.set('n', '<F5>', run_file, { desc = 'Run File' })
 
 local function sh_cmd(opts)
-  tab_terminal({ 'sh', '-c', opts.args })
+  tab_terminal { 'sh', '-c', opts.args }
 end
 
 vim.api.nvim_create_user_command('Sh', sh_cmd, { nargs = 1, complete = 'shellcmd' })
