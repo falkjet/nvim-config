@@ -2,6 +2,10 @@
 (set unpack (or table.unpack unpack))
 (set table.unpack (or table.unpack unpack))
 
+(fn nmap [key action description]
+    (vim.keymap.set :n key action {:desc description}))
+
+(import-macros {: on-ft} :macros)
 
 ;;;;;;;;;;;;;
 ;; Options ;;
@@ -34,10 +38,10 @@
 ((. (require :gitsigns) :setup))
 
 ;; Git keybinds
-(vim.keymap.set :n "<leader>gd" "<cmd>Gvdiffsplit<cr>" {:desc "[D]iff current file"})
-(vim.keymap.set :n "<leader>gs" "<cmd>Gitsigns stage_hunk<cr>" {:desc "[G]it [S]tage hunk"})
-(vim.keymap.set :n "<leader>gS" "<cmd>G stage %<cr>" {:desc "[G]it [S]tage current file"})
-(vim.keymap.set :n "<leader>gc" "<cmd>G commit<cr>" {:desc "[G]it [C]ommit"})
+(nmap "<leader>gd" "<cmd>Gvdiffsplit<cr>" "[D]iff current file")
+(nmap "<leader>gs" "<cmd>Gitsigns stage_hunk<cr>" "[G]it [S]tage hunk")
+(nmap "<leader>gS" "<cmd>G stage %<cr>" "[G]it [S]tage current file")
+(nmap "<leader>gc" "<cmd>G commit<cr>" "[G]it [C]ommit")
 
 ;;;;;;;;;;;;;;;;;;;
 ;; Configuration ;;
@@ -64,7 +68,7 @@
 (let [{: setup : open} (require :oil)]
   (setup {:win_options {:wrap false}
           :skip_confirm_for_simple_edits true})
-  (vim.keymap.set :n "-" open {:desc "Open Oil"})
+  (nmap "-" open "Open Oil")
   (vim.api.nvim_create_autocmd
     :UIEnter
     {:pattern "*"
@@ -95,8 +99,8 @@
 
 ;; Keymap tweaks
 ;; - quickfix list
-(vim.keymap.set :n "[f" "<cmd>cprev<cr>" {:desc "Previous item in quickfix list"})
-(vim.keymap.set :n "]f" "<cmd>cnext<cr>" {:desc "Next item in quickfix list"})
+(nmap "[f" "<cmd>cprev<cr>" "Previous item in quickfix list")
+(nmap "]f" "<cmd>cnext<cr>" "Next item in quickfix list")
 
 ;; Conceal (see help conceallevel)
 (set vim.o.conceallevel 2)
@@ -106,11 +110,11 @@
               (if (= 2 (vim.opt.conceallevel:get)) 0 2))))
 
 ;; Diagnostics
-(let [d vim.diagnostic s vim.keymap.set]
-  (s :n "[d" d.goto_prev {:desc "Go to previous diagnostic message"})
-  (s :n "]d" d.goto_next {:desc "Go to next diagnostic message"})
-  (s :n "<leader>e" d.open_float {:desc "Open floating diagnostic message"})
-  (s :n "<leader>q" d.setloclist {:desc "Open diagnostics list"}))
+(let [d vim.diagnostic]
+  (nmap "[d" d.goto_prev "Go to previous diagnostic message")
+  (nmap "]d" d.goto_next "Go to next diagnostic message")
+  (nmap "<leader>e" d.open_float "Open floating diagnostic message")
+  (nmap "<leader>q" d.setloclist "Open diagnostics list"))
  
 ;; Harpoon
 (require :falkjet.harpoon)
@@ -142,8 +146,8 @@
 (require :falkjet.autocomplete)
 
 ;; Surround
-(vim.keymap.set :n :mr "<Plug>Csurround" {:desc "Surround [R]eplace"})
-(vim.keymap.set :n :md "<Plug>Dsurround" {:desc "Surround [D]elete"})
+(nmap :mr "<Plug>Csurround" "Surround [R]eplace")
+(nmap :md "<Plug>Dsurround" "Surround [D]elete")
 (vim.keymap.set :v :ms "<Plug>VSurround" {:desc "[S]urround"})
 
 ;; Keymap tweaks
@@ -181,15 +185,13 @@
 (require :falkjet.treesitter)
 
 ;; Fennel
+(on-ft :fennel (set vim.bo.lisp true))
 (tset vim.g :g:conjure#client#fennel#aniseed#aniseed_module_prefix :aniseed)
 
 ;; Guile Conjure 
 (tset vim.g :conjure#filetype#scheme :conjure.client.guile.socket)
 (tset vim.g :conjure#client#guile#socket#pipename
       (.. (vim.fn.getcwd) "/.guile-repl.socket"))
-
-;; Clojure
-; (on-ft :clojure (set vim.bo.lisp true))
 
 ;; Lisp Structural editing
 (local sexp (require :treesitter-sexp))
@@ -200,6 +202,9 @@
 (vim.keymap.set [:n :i] "<M-S-h>" "<cmd>TSSexp slurp_left<cr>")
 (vim.keymap.set [:n :i] "<M-S-j>" "<cmd>TSSexp barf_left<cr>")
 (vim.keymap.set [:n :i] "<M-S-k>" "<cmd>TSSexp barf_right<cr>")
+
+;; Clojure
+(on-ft :clojure (set vim.bo.lisp true))
 
 ;; TeX
 (set vim.g.vimtex_mappings_enabled 0)
@@ -220,6 +225,9 @@
       :spacing 1
       :styles 1})
 
+;; Zig
+(set vim.g.zig_fmt_autosave 0) ; zls does this
+
 ;; Golang
 (set vim.g.go_doc_keywordprg_enabled 0)
 (set vim.g.go_def_mapping_enabled 0)
@@ -235,3 +243,10 @@
 
 ;; Fix templ indent
 (require :falkjet.templ-indent)
+
+;; Help (file opened by the help command)
+(on-ft :help (vim.keymap.set :n :q "<cmd>q<cr>" {:buffer true}))
+
+;; Templ (go files with html templates)
+;; This would be 10 times longer to implement in fennel
+(vim.cmd "autocmd BufWritePost *.templ silent! !templ generate %")

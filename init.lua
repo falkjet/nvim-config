@@ -1,6 +1,9 @@
 -- [nfnl] Compiled from init.fnl by https://github.com/Olical/nfnl, do not edit.
 unpack = (table.unpack or unpack)
 table.unpack = (table.unpack or unpack)
+local function nmap(key, action, description)
+  return vim.keymap.set("n", key, action, {desc = description})
+end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.o.hlsearch = false
@@ -20,10 +23,10 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.termguicolors = true
 vim.opt.colorcolumn:append("80")
 require("gitsigns").setup()
-vim.keymap.set("n", "<leader>gd", "<cmd>Gvdiffsplit<cr>", {desc = "[D]iff current file"})
-vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", {desc = "[G]it [S]tage hunk"})
-vim.keymap.set("n", "<leader>gS", "<cmd>G stage %<cr>", {desc = "[G]it [S]tage current file"})
-vim.keymap.set("n", "<leader>gc", "<cmd>G commit<cr>", {desc = "[G]it [C]ommit"})
+nmap("<leader>gd", "<cmd>Gvdiffsplit<cr>", "[D]iff current file")
+nmap("<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", "[G]it [S]tage hunk")
+nmap("<leader>gS", "<cmd>G stage %<cr>", "[G]it [S]tage current file")
+nmap("<leader>gc", "<cmd>G commit<cr>", "[G]it [C]ommit")
 require("neoconf").setup()
 require("neodev").setup()
 require("which-key").setup()
@@ -36,7 +39,7 @@ do
   local setup = _let_1_["setup"]
   local open = _let_1_["open"]
   setup({win_options = {wrap = false}, skip_confirm_for_simple_edits = true})
-  vim.keymap.set("n", "-", open, {desc = "Open Oil"})
+  nmap("-", open, "Open Oil")
   local function _2_()
     if (0 == #vim.fn.argv()) then
       return open()
@@ -64,8 +67,8 @@ do
   end
   make_command("Worktree", _5_, {})
 end
-vim.keymap.set("n", "[f", "<cmd>cprev<cr>", {desc = "Previous item in quickfix list"})
-vim.keymap.set("n", "]f", "<cmd>cnext<cr>", {desc = "Next item in quickfix list"})
+nmap("[f", "<cmd>cprev<cr>", "Previous item in quickfix list")
+nmap("]f", "<cmd>cnext<cr>", "Next item in quickfix list")
 vim.o.conceallevel = 2
 local function _6_()
   if (2 == vim.opt.conceallevel:get()) then
@@ -78,11 +81,10 @@ end
 vim.keymap.set("n", "<leader>tc", _6_)
 do
   local d = vim.diagnostic
-  local s = vim.keymap.set
-  s("n", "[d", d.goto_prev, {desc = "Go to previous diagnostic message"})
-  s("n", "]d", d.goto_next, {desc = "Go to next diagnostic message"})
-  s("n", "<leader>e", d.open_float, {desc = "Open floating diagnostic message"})
-  s("n", "<leader>q", d.setloclist, {desc = "Open diagnostics list"})
+  nmap("[d", d.goto_prev, "Go to previous diagnostic message")
+  nmap("]d", d.goto_next, "Go to next diagnostic message")
+  nmap("<leader>e", d.open_float, "Open floating diagnostic message")
+  nmap("<leader>q", d.setloclist, "Open diagnostics list")
 end
 require("falkjet.harpoon")
 do
@@ -94,15 +96,15 @@ require("falkjet.folding")
 do
   local au = require("ultimate-autopair")
   local function _9_(fun)
-    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:134")
+    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:138")
     return ((vim.o.ft ~= "fennel") and not fun.in_lisp())
   end
   au.setup({cr = {enable = true, autoclose = true, conf = {cond = _9_}}})
 end
 require("falkjet.snippets")
 require("falkjet.autocomplete")
-vim.keymap.set("n", "mr", "<Plug>Csurround", {desc = "Surround [R]eplace"})
-vim.keymap.set("n", "md", "<Plug>Dsurround", {desc = "Surround [D]elete"})
+nmap("mr", "<Plug>Csurround", "Surround [R]eplace")
+nmap("md", "<Plug>Dsurround", "Surround [D]elete")
 vim.keymap.set("v", "ms", "<Plug>VSurround", {desc = "[S]urround"})
 vim.keymap.set("i", "jj", "<Esc>")
 do
@@ -118,6 +120,11 @@ require("falkjet.run")
 require("falkjet.dap")
 require("falkjet.lsp")
 require("falkjet.treesitter")
+local function _11_()
+  vim.bo.lisp = true
+  return nil
+end
+vim.api.nvim_create_autocmd("FileType", {callback = _11_, pattern = "fennel"})
 vim.g["g:conjure#client#fennel#aniseed#aniseed_module_prefix"] = "aniseed"
 vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
 vim.g["conjure#client#guile#socket#pipename"] = (vim.fn.getcwd() .. "/.guile-repl.socket")
@@ -127,13 +134,24 @@ vim.keymap.set({"n", "i"}, "<M-S-l>", "<cmd>TSSexp slurp_right<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-h>", "<cmd>TSSexp slurp_left<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-j>", "<cmd>TSSexp barf_left<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-k>", "<cmd>TSSexp barf_right<cr>")
+local function _12_()
+  vim.bo.lisp = true
+  return nil
+end
+vim.api.nvim_create_autocmd("FileType", {callback = _12_, pattern = "clojure"})
 vim.g.vimtex_mappings_enabled = 0
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_quickfix_mode = 1
 vim.g.vimtex_syntax_conceal = {accents = 1, cites = 1, fancy = 1, greek = 1, ligatures = 1, math_bounds = 0, delimiters = 1, math_fracs = 1, math_super_sub = 1, math_symbols = 1, sections = 0, spacing = 1, styles = 1}
+vim.g.zig_fmt_autosave = 0
 vim.g.go_doc_keywordprg_enabled = 0
 vim.g.go_def_mapping_enabled = 0
 require("falkjet.obsidian")
 require("falkjet.bqn")
 require("falkjet.html-indent")
-return require("falkjet.templ-indent")
+require("falkjet.templ-indent")
+local function _13_()
+  return vim.keymap.set("n", "q", "<cmd>q<cr>", {buffer = true})
+end
+vim.api.nvim_create_autocmd("FileType", {callback = _13_, pattern = "help"})
+return vim.cmd("autocmd BufWritePost *.templ silent! !templ generate %")
