@@ -1,45 +1,24 @@
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<c-y>'] = cmp.mapping.confirm {
-      select = true,
-      behavior = cmp.ConfirmBehavior.Replace
-    },
-    ['<c-k>'] = cmp.mapping.confirm {
-      select = true,
-      behavior = cmp.ConfirmBehavior.Replace
-    },
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'conjure' }
-  },
-}
-
--- vim: ts=2 sts=2 sw=2 et
+-- [nfnl] Compiled from fnl/falkjet/autocomplete.fnl by https://github.com/Olical/nfnl, do not edit.
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+local m = cmp.mapping
+local function on_tab(fallback)
+  local _1_
+  if luasnip.expand_or_locally_jumpable() then
+    _1_ = luasnip.expand_or_jump
+  else
+    _1_ = fallback
+  end
+  return _1_()
+end
+local function on_s_tab(fallback)
+  if luasnip.locally_jumpable(-1) then
+    return luasnip.jump(-1)
+  else
+    return fallback()
+  end
+end
+local function _4_(args)
+  return luasnip.lsp_expand(args.body)
+end
+return cmp.setup({snippet = {expand = _4_}, mapping = m.preset.insert({["<C-n>"] = m.select_next_item(), ["<C-p>"] = m.select_prev_item(), ["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-Space>"] = m.complete({}), ["<Tab>"] = m(on_tab, {"i", "s"}), ["<c-k>"] = m.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}), ["<S-Tab>"] = m(on_s_tab, {"i", "s"})}), sources = {{name = "nvim_lsp"}, {name = "conjure"}}})
