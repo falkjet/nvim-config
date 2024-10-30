@@ -3,7 +3,22 @@ unpack = (table.unpack or unpack)
 table.unpack = (table.unpack or unpack)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-require("falkjet.options")
+vim.o.hlsearch = false
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.o.mouse = "a"
+vim.opt.showtabline = 2
+vim.o.clipboard = "unnamedplus"
+vim.o.breakindent = true
+vim.o.undofile = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.wo.signcolumn = "yes"
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+vim.o.completeopt = "menuone,noselect"
+vim.o.termguicolors = true
+vim.opt.colorcolumn:append("80")
 require("gitsigns").setup()
 vim.keymap.set("n", "<leader>gd", "<cmd>Gvdiffsplit<cr>", {desc = "[D]iff current file"})
 vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", {desc = "[G]it [S]tage hunk"})
@@ -51,6 +66,7 @@ do
 end
 vim.keymap.set("n", "[f", "<cmd>cprev<cr>", {desc = "Previous item in quickfix list"})
 vim.keymap.set("n", "]f", "<cmd>cnext<cr>", {desc = "Next item in quickfix list"})
+vim.o.conceallevel = 2
 local function _6_()
   if (2 == vim.opt.conceallevel:get()) then
     vim.opt.conceallevel = 0
@@ -78,7 +94,7 @@ require("falkjet.folding")
 do
   local au = require("ultimate-autopair")
   local function _9_(fun)
-    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:118")
+    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:134")
     return ((vim.o.ft ~= "fennel") and not fun.in_lisp())
   end
   au.setup({cr = {enable = true, autoclose = true, conf = {cond = _9_}}})
@@ -95,6 +111,9 @@ do
   setup()
 end
 vim.filetype.add({extension = {cshtml = "razor", maude = "maude", templ = "templ", tmpl = "gohtmltmpl", bqn = "bqn"}})
+vim.opt.sw = 4
+vim.opt.ts = 4
+vim.opt.et = true
 require("falkjet.run")
 require("falkjet.dap")
 require("falkjet.lsp")

@@ -8,7 +8,22 @@
 ;;;;;;;;;;;;;
 (set vim.g.mapleader " ")
 (set vim.g.maplocalleader " ")
-(require :falkjet.options)
+(set vim.o.hlsearch false)
+(set vim.wo.number true)
+(set vim.wo.relativenumber true)
+(set vim.o.mouse :a)
+(set vim.opt.showtabline 2)
+(set vim.o.clipboard :unnamedplus)
+(set vim.o.breakindent true)
+(set vim.o.undofile true)
+(set vim.o.ignorecase true)
+(set vim.o.smartcase true)
+(set vim.wo.signcolumn :yes)
+(set vim.o.updatetime 250)
+(set vim.o.timeoutlen 300)
+(set vim.o.completeopt "menuone,noselect")
+(set vim.o.termguicolors true)
+(vim.opt.colorcolumn:append :80)
 
 
 ;;;;;;;;;;;;;;;;;;;;;
@@ -83,7 +98,8 @@
 (vim.keymap.set :n "[f" "<cmd>cprev<cr>" {:desc "Previous item in quickfix list"})
 (vim.keymap.set :n "]f" "<cmd>cnext<cr>" {:desc "Next item in quickfix list"})
 
-;; Toggle conceal
+;; Conceal (see help conceallevel)
+(set vim.o.conceallevel 2)
 (vim.keymap.set
   :n "<leader>tc"
   (fn [] (set vim.opt.conceallevel
@@ -148,6 +164,11 @@
     :templ  :templ
     :tmpl   :gohtmltmpl
     :bqn    :bqn}})
+
+;; Decent indent options
+(set vim.opt.sw 4)
+(set vim.opt.ts 4)
+(set vim.opt.et true)
 
 ;; Run and debug
 (require :falkjet.run)
