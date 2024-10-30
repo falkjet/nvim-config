@@ -85,3 +85,4 @@ fatih/vim-go:ac1fb9611de435d80a6badcf8482cb1428449b10
 lervag/vimtex:a4db0ee3271f58a08596ba853ea1e167f41ff9d6 # Latex plugin
 ziglang/zig.vim:15d6510b77a4efbb6ffcb151ed7e2ce4de4d06f6
 kaarmu/typst.vim:4d18ced62599ffe5b3c0e5e49566d5456121bc02
+Olical/nfnl:60b2ab7051cf2f631bc03274b56061136d1f9177

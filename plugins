@@ -168,6 +168,7 @@ local function find_paths(options)
         os.getenv 'HOME' .. '/.local/share'
 
     local nvim_appname = os.getenv 'NVIM_APPNAME' or 'nvim'
+    if nvim_appname == '' then nvim_appname = 'nvim' end
 
     paths.plugins_file =
         options.plugins_file or
