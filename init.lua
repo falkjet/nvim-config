@@ -146,7 +146,13 @@ vim.g.vimtex_syntax_conceal = {accents = 1, cites = 1, fancy = 1, greek = 1, lig
 vim.g.zig_fmt_autosave = 0
 vim.g.go_doc_keywordprg_enabled = 0
 vim.g.go_def_mapping_enabled = 0
-require("falkjet.obsidian")
+do
+  local obsidian = require("obsidian")
+  obsidian.setup({workspaces = {{name = "Obsidian Vault", path = "~/Documents/Obsidian Vault"}}})
+  nmap("<leader>oo", "<cmd>ObsidianOpen<cr>", "[O]pen [O]bsidian")
+  nmap("<leader>os", "<cmd>ObsidianOpen<cr>", "[O]bsidian [S]earch")
+  nmap("<leader>ol", "<cmd>ObsidianOpen<cr>", "[O]bsidian [L]inks")
+end
 require("falkjet.bqn")
 require("falkjet.html-indent")
 require("falkjet.templ-indent")

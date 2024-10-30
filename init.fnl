@@ -233,7 +233,13 @@
 (set vim.g.go_def_mapping_enabled 0)
 
 ;; Obsidian markdown notes
-(require :falkjet.obsidian)
+(let [obsidian (require :obsidian)]
+  (obsidian.setup
+    {:workspaces [{:name "Obsidian Vault"
+                   :path "~/Documents/Obsidian Vault"}]})
+  (nmap "<leader>oo" "<cmd>ObsidianOpen<cr>" "[O]pen [O]bsidian")
+  (nmap "<leader>os" "<cmd>ObsidianOpen<cr>" "[O]bsidian [S]earch")
+  (nmap "<leader>ol" "<cmd>ObsidianOpen<cr>" "[O]bsidian [L]inks"))
 
 ;; Big question notation
 (require :falkjet.bqn)
