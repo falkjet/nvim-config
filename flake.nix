@@ -13,7 +13,7 @@
         };
       in {
         packages = rec {
-          neovim = import ./nvim.nix { inherit pkgs; };
+          neovim = import ./nix/nvim.nix { inherit pkgs; };
           default = neovim;
         };
       });

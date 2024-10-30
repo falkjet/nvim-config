@@ -1,6 +1,6 @@
 { pkgs }:
 let
-  rcfile = ./init.lua;
+  rcfile = ../init.lua;
   plugin-parser = import ./plugins-parser.nix { inherit pkgs; };
   plugin-overrides = with pkgs.vimPlugins; {
     nvim-treesitter = (nvim-treesitter.withPlugins (_:
@@ -33,8 +33,8 @@ in pkgs.neovim.override {
       luafile ${rcfile}
     '';
     packages.falkjet = {
-      start =
-        builtins.attrValues ((plugin-parser ./plugins.txt) // plugin-overrides);
+      start = builtins.attrValues
+        ((plugin-parser ../plugins.txt) // plugin-overrides);
     };
   };
 }
