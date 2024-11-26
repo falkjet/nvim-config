@@ -127,7 +127,6 @@ local function _11_()
 end
 vim.api.nvim_create_autocmd("FileType", {callback = _11_, pattern = "fennel"})
 vim.g["g:conjure#client#fennel#aniseed#aniseed_module_prefix"] = "aniseed"
-vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
 vim.g["conjure#client#guile#socket#pipename"] = (vim.fn.getcwd() .. "/.guile-repl.socket")
 local sexp = require("treesitter-sexp")
 sexp.setup({enabled = true, set_cursor = false})

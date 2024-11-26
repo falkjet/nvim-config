@@ -190,7 +190,6 @@
 (tset vim.g :g:conjure#client#fennel#aniseed#aniseed_module_prefix :aniseed)
 
 ;; Guile Conjure 
-(tset vim.g :conjure#filetype#scheme :conjure.client.guile.socket)
 (tset vim.g :conjure#client#guile#socket#pipename
       (.. (vim.fn.getcwd) "/.guile-repl.socket"))
 
