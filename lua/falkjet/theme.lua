@@ -1,5 +1,4 @@
 local onedark = require 'onedark'
-local lualine = require 'lualine'
 local catppuccin = require 'catppuccin'
 
 onedark.setup {
@@ -10,16 +9,9 @@ onedark.load()
 
 catppuccin.setup {
 	falvour = 'auto',
-	transparent_background = false,
+	transparent_background = true,
 }
 
-lualine.setup {
-	options = {
-		icons_enabled = false,
-		theme = 'catppuccin',
-		component_separators = '|',
-		section_separators = '',
-	},
-}
+
 
 vim.cmd [[ colorscheme catppuccin ]]

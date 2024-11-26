@@ -27,7 +27,8 @@
 (set vim.o.timeoutlen 300)
 (set vim.o.completeopt "menuone,noselect")
 (set vim.o.termguicolors true)
-(vim.opt.colorcolumn:append :80)
+(set vim.o.showtabline 0)
+(set vim.o.laststatus 0)
 
 
 ;;;;;;;;;;;;;;;;;;;;;
