@@ -4,6 +4,8 @@
 
 (fn nmap [key action description]
     (vim.keymap.set :n key action {:desc description}))
+(fn cmap [key action description]
+    (vim.keymap.set :c key action {:desc description}))
 
 (import-macros {: on-ft} :macros)
 
@@ -103,6 +105,10 @@
 (nmap "[f" "<cmd>cprev<cr>" "Previous item in quickfix list")
 (nmap "]f" "<cmd>cnext<cr>" "Next item in quickfix list")
 
+;; One Handed
+(nmap "<C-c>" :: "")
+(cmap "<C-c>" "<cr>" "")
+
 ;; Conceal (see help conceallevel)
 (set vim.o.conceallevel 2)
 (vim.keymap.set
@@ -116,6 +122,21 @@
   (nmap "]d" d.goto_next "Go to next diagnostic message")
   (nmap "<leader>e" d.open_float "Open floating diagnostic message")
   (nmap "<leader>q" d.setloclist "Open diagnostics list"))
+
+(fn hide-diagnostics []
+  (vim.diagnostic.config
+    {:virtual_text false
+     :signs false
+     :underline false}))
+
+(fn show-diagnostics []
+  (vim.diagnostic.config
+    {:virtual_text true
+     :signs true
+     :underline true}))
+
+(nmap "<leader>dh" hide-diagnostics "Hide Diagnostics")
+(nmap "<leader>ds" show-diagnostics "Show Dianostics")
  
 ;; Harpoon
 (require :falkjet.harpoon)
@@ -157,6 +178,11 @@
 ;; Fold and unfold list, scopes, ...
 (let [{: setup} (require :treesj)]
   (setup))
+
+(vim.defer_fn
+  (fn []
+    (vim.cmd.Abolish "stirng" "string")
+    (vim.cmd.Abolish "skirve" "skrive")) 0)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;

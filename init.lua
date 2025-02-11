@@ -4,6 +4,9 @@ table.unpack = (table.unpack or unpack)
 local function nmap(key, action, description)
   return vim.keymap.set("n", key, action, {desc = description})
 end
+local function cmap(key, action, description)
+  return vim.keymap.set("c", key, action, {desc = description})
+end
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.o.hlsearch = false
@@ -70,6 +73,8 @@ do
 end
 nmap("[f", "<cmd>cprev<cr>", "Previous item in quickfix list")
 nmap("]f", "<cmd>cnext<cr>", "Next item in quickfix list")
+nmap("<C-c>", ":", "")
+cmap("<C-c>", "<cr>", "")
 vim.o.conceallevel = 2
 local function _6_()
   if (2 == vim.opt.conceallevel:get()) then
@@ -87,6 +92,14 @@ do
   nmap("<leader>e", d.open_float, "Open floating diagnostic message")
   nmap("<leader>q", d.setloclist, "Open diagnostics list")
 end
+local function hide_diagnostics()
+  return vim.diagnostic.config({signs = false, underline = false, virtual_text = false})
+end
+local function show_diagnostics()
+  return vim.diagnostic.config({virtual_text = true, signs = true, underline = true})
+end
+nmap("<leader>dh", hide_diagnostics, "Hide Diagnostics")
+nmap("<leader>ds", show_diagnostics, "Show Dianostics")
 require("falkjet.harpoon")
 do
   local _let_8_ = require("fidget")
@@ -97,7 +110,7 @@ require("falkjet.folding")
 do
   local au = require("ultimate-autopair")
   local function _9_(fun)
-    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:139")
+    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:160")
     return ((vim.o.ft ~= "fennel") and not fun.in_lisp())
   end
   au.setup({cr = {enable = true, autoclose = true, conf = {cond = _9_}}})
@@ -113,6 +126,11 @@ do
   local setup = _let_10_["setup"]
   setup()
 end
+local function _11_()
+  vim.cmd.Abolish("stirng", "string")
+  return vim.cmd.Abolish("skirve", "skrive")
+end
+vim.defer_fn(_11_, 0)
 vim.filetype.add({extension = {cshtml = "razor", maude = "maude", templ = "templ", tmpl = "gohtmltmpl", bqn = "bqn"}})
 vim.opt.sw = 4
 vim.opt.ts = 4
@@ -121,11 +139,11 @@ require("falkjet.run")
 require("falkjet.dap")
 require("falkjet.lsp")
 require("falkjet.treesitter")
-local function _11_()
+local function _12_()
   vim.bo.lisp = true
   return nil
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _11_, pattern = "fennel"})
+vim.api.nvim_create_autocmd("FileType", {callback = _12_, pattern = "fennel"})
 vim.g["g:conjure#client#fennel#aniseed#aniseed_module_prefix"] = "aniseed"
 vim.g["conjure#client#guile#socket#pipename"] = (vim.fn.getcwd() .. "/.guile-repl.socket")
 local sexp = require("treesitter-sexp")
@@ -134,11 +152,11 @@ vim.keymap.set({"n", "i"}, "<M-S-l>", "<cmd>TSSexp slurp_right<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-h>", "<cmd>TSSexp slurp_left<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-j>", "<cmd>TSSexp barf_left<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-k>", "<cmd>TSSexp barf_right<cr>")
-local function _12_()
+local function _13_()
   vim.bo.lisp = true
   return nil
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _12_, pattern = "clojure"})
+vim.api.nvim_create_autocmd("FileType", {callback = _13_, pattern = "clojure"})
 vim.g.vimtex_mappings_enabled = 0
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_quickfix_mode = 1
@@ -157,8 +175,8 @@ end
 require("falkjet.bqn")
 require("falkjet.html-indent")
 require("falkjet.templ-indent")
-local function _13_()
+local function _14_()
   return vim.keymap.set("n", "q", "<cmd>q<cr>", {buffer = true})
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _13_, pattern = "help"})
+vim.api.nvim_create_autocmd("FileType", {callback = _14_, pattern = "help"})
 return vim.cmd("autocmd BufWritePost *.templ silent! !templ generate %")
