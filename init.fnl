@@ -31,6 +31,7 @@
 (set vim.o.termguicolors true)
 (set vim.o.showtabline 0)
 (set vim.o.laststatus 0)
+(set vim.o.tags "~/.vim/system.tags,tags")
 
 
 ;;;;;;;;;;;;;;;;;;;;;

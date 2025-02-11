@@ -26,6 +26,7 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.termguicolors = true
 vim.o.showtabline = 0
 vim.o.laststatus = 0
+vim.o.tags = "~/.vim/system.tags,tags"
 require("gitsigns").setup()
 nmap("<leader>gd", "<cmd>Gvdiffsplit<cr>", "[D]iff current file")
 nmap("<leader>gs", "<cmd>Gitsigns stage_hunk<cr>", "[G]it [S]tage hunk")
@@ -111,7 +112,7 @@ require("falkjet.folding")
 do
   local au = require("ultimate-autopair")
   local function _9_(fun)
-    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:162")
+    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:163")
     return ((vim.o.ft ~= "fennel") and not fun.in_lisp())
   end
   au.setup({cr = {enable = true, autoclose = true, conf = {cond = _9_}}})
