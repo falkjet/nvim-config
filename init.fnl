@@ -228,6 +228,12 @@
 ;; Zig
 (set vim.g.zig_fmt_autosave 0) ; zls does this
 
+;; C3
+(vim.filetype.add
+ {:extension {:c3 "c3"
+              :c3i "c3"
+              :c3t "c3"}})
+
 ;; Golang
 (set vim.g.go_doc_keywordprg_enabled 0)
 (set vim.g.go_def_mapping_enabled 0)

@@ -8,6 +8,16 @@ parser_config.nu = {
   filetype = "nu",
 }
 
+
+parser_config.c3 = {
+  install_info = {
+    url = "https://github.com/c3lang/tree-sitter-c3",
+    files = { "src/parser.c", "src/scanner.c" },
+    branch = "main",
+  },
+  filetype = "c3",
+}
+
 vim.defer_fn(function()
   ---@diagnostic disable-next-line: missing-fields
   require('nvim-treesitter.configs').setup {
