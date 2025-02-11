@@ -137,6 +137,8 @@
 
 (nmap "<leader>dh" hide-diagnostics "Hide Diagnostics")
 (nmap "<leader>ds" show-diagnostics "Show Dianostics")
+
+(hide-diagnostics) ; TODO: toggle diagnostics
  
 ;; Harpoon
 (require :falkjet.harpoon)

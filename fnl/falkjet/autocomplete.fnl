@@ -18,5 +18,5 @@
                  "<c-k>" (m.confirm {:select true
                                      :behavior cmp.ConfirmBehavior.Replace})
                  "<S-Tab>" (m on-s-tab [:i :s])})
-     :sources [{:name :nvim_lsp} {:name :conjure}]}))
+     :sources [{:name :conjure}]}))
 

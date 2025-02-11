@@ -1,4 +1,3 @@
-local lspformat = require 'lsp-format'
 local telescope_builtin = require 'telescope.builtin'
 local neodev = require 'neodev'
 
@@ -105,8 +104,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 local on_attach = function(client, bufnr)
-  lspformat.on_attach(client)
-
   local nmap = function(keys, func, desc)
     if desc then desc = 'LSP: ' .. desc end
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })

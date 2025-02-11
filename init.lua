@@ -100,6 +100,7 @@ local function show_diagnostics()
 end
 nmap("<leader>dh", hide_diagnostics, "Hide Diagnostics")
 nmap("<leader>ds", show_diagnostics, "Show Dianostics")
+hide_diagnostics()
 require("falkjet.harpoon")
 do
   local _let_8_ = require("fidget")
@@ -110,7 +111,7 @@ require("falkjet.folding")
 do
   local au = require("ultimate-autopair")
   local function _9_(fun)
-    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:160")
+    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:162")
     return ((vim.o.ft ~= "fennel") and not fun.in_lisp())
   end
   au.setup({cr = {enable = true, autoclose = true, conf = {cond = _9_}}})
