@@ -51,7 +51,6 @@ local servers = {
   gleam = {},
   erlangls = {},
   elixirls = { cmd = { 'elixir-ls' } },
-  ols = {},
   efm = {
     init_options = {
       documentFormatting = true,
@@ -85,7 +84,6 @@ local servers = {
     cmd = { 'efm-langserver' }
   },
   elmls = {},
-  jdtls = {},
   nushell = {},
 }
 
