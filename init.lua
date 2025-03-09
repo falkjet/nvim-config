@@ -176,7 +176,6 @@ do
 end
 require("falkjet.bqn")
 require("falkjet.html-indent")
-require("falkjet.templ-indent")
 local function _14_()
   return vim.keymap.set("n", "q", "<cmd>q<cr>", {buffer = true})
 end

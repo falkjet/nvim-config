@@ -282,9 +282,6 @@
 ;; Fix html indent
 (require :falkjet.html-indent)
 
-;; Fix templ indent
-(require :falkjet.templ-indent)
-
 ;; Help (file opened by the help command)
 (on-ft :help (vim.keymap.set :n :q "<cmd>q<cr>" {:buffer true}))
 
