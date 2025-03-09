@@ -16,3 +16,14 @@ for i = 1, 10 do
 	end
 	vim.keymap.set({ 'n', 't', 'i', 'v' }, k, action, { desc = desc })
 end
+
+
+--- Run vim commands instead of terminal commands
+function runcmd(n)
+	return function() vim.cmd(harpoon.get_term_config().cmds[n]) end
+end
+
+vim.keymap.set({ 'n', 't', 'i', 'v' }, '<F9>', runcmd(1), { desc = 'Harpoon Coommand 1' })
+vim.keymap.set({ 'n', 't', 'i', 'v' }, '<F10>', runcmd(2), { desc = 'Harpoon Coommand 2' })
+vim.keymap.set({ 'n', 't', 'i', 'v' }, '<F11>', runcmd(3), { desc = 'Harpoon Coommand 3' })
+vim.keymap.set({ 'n', 't', 'i', 'v' }, '<F12>', runcmd(4), { desc = 'Harpoon Coommand 4' })
