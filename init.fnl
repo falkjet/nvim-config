@@ -254,6 +254,10 @@
       :spacing 1
       :styles 1})
 
+;; C
+(set vim.g.compiler_gcc_ignore_unmatched_lines true)
+(set vim.g.c_syntax_for_h true)
+
 ;; Zig
 (set vim.g.zig_fmt_autosave 0) ; zls does this
 
