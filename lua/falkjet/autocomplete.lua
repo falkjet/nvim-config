@@ -21,4 +21,4 @@ end
 local function _4_(args)
   return luasnip.lsp_expand(args.body)
 end
-return cmp.setup({snippet = {expand = _4_}, mapping = m.preset.insert({["<C-n>"] = m.select_next_item(), ["<C-p>"] = m.select_prev_item(), ["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-Space>"] = m.complete({}), ["<Tab>"] = m(on_tab, {"i", "s"}), ["<c-k>"] = m.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}), ["<S-Tab>"] = m(on_s_tab, {"i", "s"})}), sources = {{name = "conjure"}, {name = "buffer"}, {name = "tags", option = {complete_defer = 10}}}})
+return cmp.setup({snippet = {expand = _4_}, mapping = m.preset.insert({["<C-n>"] = m.select_next_item(), ["<C-p>"] = m.select_prev_item(), ["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-Space>"] = m.complete({}), ["<Tab>"] = m(on_tab, {"i", "s"}), ["<c-k>"] = m.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}), ["<S-Tab>"] = m(on_s_tab, {"i", "s"})}), sources = {{name = "conjure"}, {name = "buffer"}, {name = "tags"}}})

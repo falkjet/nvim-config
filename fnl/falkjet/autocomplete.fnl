@@ -19,5 +19,6 @@
                                      :behavior cmp.ConfirmBehavior.Replace})
                  "<S-Tab>" (m on-s-tab [:i :s])})
      :sources [{:name :conjure}
-               {:name :buffer}]}))
+               {:name :buffer}
+               {:name :tags}]}))
 
