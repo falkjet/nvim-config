@@ -133,6 +133,17 @@ local function _11_()
   return vim.cmd.Abolish("skirve", "skrive")
 end
 vim.defer_fn(_11_, 0)
+do
+  local _let_12_ = require("Comment")
+  local setup = _let_12_["setup"]
+  local _let_13_ = require("Comment.ft")
+  local set_ft = _let_13_["set"]
+  setup()
+  set_ft("fennel", ";; %s")
+  set_ft("scheme", ";; %s")
+  set_ft("nasm", ";; %s")
+  set_ft("templ", "// %s")
+end
 vim.filetype.add({extension = {cshtml = "razor", maude = "maude", templ = "templ", tmpl = "gohtmltmpl", bqn = "bqn"}})
 vim.opt.sw = 4
 vim.opt.ts = 4
@@ -141,11 +152,11 @@ require("falkjet.run")
 require("falkjet.dap")
 require("falkjet.lsp")
 require("falkjet.treesitter")
-local function _12_()
+local function _14_()
   vim.bo.lisp = true
   return nil
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _12_, pattern = "fennel"})
+vim.api.nvim_create_autocmd("FileType", {callback = _14_, pattern = "fennel"})
 vim.g["g:conjure#client#fennel#aniseed#aniseed_module_prefix"] = "aniseed"
 vim.g["conjure#client#guile#socket#pipename"] = (vim.fn.getcwd() .. "/.guile-repl.socket")
 local sexp = require("treesitter-sexp")
@@ -154,11 +165,11 @@ vim.keymap.set({"n", "i"}, "<M-S-l>", "<cmd>TSSexp slurp_right<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-h>", "<cmd>TSSexp slurp_left<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-j>", "<cmd>TSSexp barf_left<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-k>", "<cmd>TSSexp barf_right<cr>")
-local function _13_()
+local function _15_()
   vim.bo.lisp = true
   return nil
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _13_, pattern = "clojure"})
+vim.api.nvim_create_autocmd("FileType", {callback = _15_, pattern = "clojure"})
 vim.g.vimtex_mappings_enabled = 0
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_quickfix_mode = 1
@@ -178,8 +189,8 @@ do
 end
 require("falkjet.bqn")
 require("falkjet.html-indent")
-local function _14_()
+local function _16_()
   return vim.keymap.set("n", "q", "<cmd>q<cr>", {buffer = true})
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _14_, pattern = "help"})
+vim.api.nvim_create_autocmd("FileType", {callback = _16_, pattern = "help"})
 return vim.cmd("autocmd BufWritePost *.templ silent! !templ generate %")

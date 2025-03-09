@@ -187,6 +187,14 @@
     (vim.cmd.Abolish "stirng" "string")
     (vim.cmd.Abolish "skirve" "skrive")) 0)
 
+;; Comment
+(let [{: setup} (require :Comment)
+      {:set set-ft} (require :Comment.ft)]
+  (setup)
+  (set-ft :fennel ";; %s")
+  (set-ft :scheme ";; %s")
+  (set-ft :nasm ";; %s")
+  (set-ft :templ "// %s"))
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Language Support ;;
