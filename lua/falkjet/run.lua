@@ -56,7 +56,6 @@ local filetypes = {
         'sh',
         '-c',
         [[
-          export MAUDE_LIB=/usr/share/maude
           echo "$0"
           maude -no-banner "$0" 0</dev/null
           echo PRESS ENTER TO CONTINUE
@@ -134,33 +133,5 @@ require 'neoconf.plugins'.register {
 }
 
 local Neoconf = require 'neoconf'
-
-local function run_project()
-  local cmd = Neoconf.get 'project.run_cmd'
-  if type(cmd) == 'nil' then
-    print("No command configured")
-    return
-  end
-  if type(cmd) == 'string' then
-    cmd = { 'sh', '-c', cmd }
-  end
-  tab_terminal(cmd)
-end
-
-local function run_project_in_background()
-  local cmd = Neoconf.get 'project.run_cmd'
-  if type(cmd) == 'nil' then
-    print("No command configured")
-    return
-  end
-  if type(cmd) == 'string' then
-    cmd = { 'sh', '-c', cmd }
-  end
-  tab_terminal(cmd, { background = true })
-end
-
-vim.api.nvim_create_user_command('Run', run_project, { nargs = 0 })
-vim.keymap.set('n', '<F9>', run_project, { desc = 'Run Project' })
-vim.keymap.set('n', '<F21>', run_project_in_background, { desc = 'Run Project in Background' })
 
 -- vim: ts=2 sts=2 sw=2 et
