@@ -3,14 +3,6 @@ local neodev = require 'neodev'
 
 
 local servers = {
-  lua_ls = {
-    settings = {
-      Lua = {
-        workspace = { checkThirdParty = false },
-        telemetry = { enable = false },
-      },
-    }
-  },
   emmet_ls = {
     filetypes = {
       'html', 'javascript', 'typescript', 'javascriptreact',
@@ -25,17 +17,12 @@ local servers = {
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
     cmd = { "haskell-language-server-wrapper", "--lsp" },
   },
-  clangd = {
-    filetypes = { 'c', 'cpp', 'objcpp', 'cuda' },
-    root_dir = require 'lspconfig'.util.find_git_ancestor,
-  },
   serve_d = {},
   ocamllsp = {},
   zls = {},
   gopls = {},
   nil_ls = {},
   rust_analyzer = {},
-  pylsp = {},
   psalm = {},
   intelephense = {},
   roc_language_server = {},
