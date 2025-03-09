@@ -179,8 +179,37 @@
 (vim.keymap.set :i "jj" "<Esc>")
 
 ;; Fold and unfold list, scopes, ...
-(let [{: setup} (require :treesj)]
-  (setup))
+(let [{: setup} (require :treesj)
+      {: helpers} (require :treesj.langs.utils)
+      is-2nd-child
+      (fn [node] (local parent (node:parent)) (= (parent:child 2) node))]
+  (setup {:langs
+          {:templ
+           {:block {}
+            :argument_list {:both {:separator ","
+                                   }
+                            :split {:last_separator true}}
+            :parameter_list {:both {:separator ","} :split {:last_separator true}}
+            :import_spec_list {}
+            :component_block {}
+            :script_block {}
+            :element {}
+            :tag_start {:both
+                        {:omit [is-2nd-child]}}
+            :function_declaration {:target_nodes [:block]}
+            :func_literal {:target_nodes [:block]}}
+           :zig
+           {:initializer_list {:both {:separator ","} :split {:last_separator true}}
+            :struct_initializer {:target_nodes [:initializer_list]}
+            :anonymous_struct_initializer {:target_nodes [:initializer_list]}
+            :call_expression {:both {:separator ","
+                                     :omit [is-2nd-child]}}
+            :block {}
+            :parameters {:both {:separator ","} :split {:last_separator true}}}
+           :odin
+           {:tuple_type {:both {:separator ","} :split {:last_separator true}}
+            :parameters {:both {:separator ","} :split {:last_separator true}}
+            :call_expression {:both {:separator ","} :split {:last_separator true}}}}}))
 
 (vim.defer_fn
   (fn []
@@ -278,6 +307,7 @@
 ;; Golang
 (set vim.g.go_doc_keywordprg_enabled 0)
 (set vim.g.go_def_mapping_enabled 0)
+(set vim.g.go_fmt_autosave 0)
 
 ;; Obsidian markdown notes
 (let [obsidian (require :obsidian)]

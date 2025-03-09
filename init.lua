@@ -126,18 +126,26 @@ vim.keymap.set("i", "jj", "<Esc>")
 do
   local _let_10_ = require("treesj")
   local setup = _let_10_["setup"]
-  setup()
+  local _let_11_ = require("treesj.langs.utils")
+  local helpers = _let_11_["helpers"]
+  local is_2nd_child
+  local function _12_(node)
+    local parent = node:parent()
+    return (parent:child(2) == node)
+  end
+  is_2nd_child = _12_
+  setup({langs = {templ = {block = {}, argument_list = {both = {separator = ","}, split = {last_separator = true}}, parameter_list = {both = {separator = ","}, split = {last_separator = true}}, import_spec_list = {}, component_block = {}, script_block = {}, element = {}, tag_start = {both = {omit = {is_2nd_child}}}, function_declaration = {target_nodes = {"block"}}, func_literal = {target_nodes = {"block"}}}, zig = {initializer_list = {both = {separator = ","}, split = {last_separator = true}}, struct_initializer = {target_nodes = {"initializer_list"}}, anonymous_struct_initializer = {target_nodes = {"initializer_list"}}, call_expression = {both = {separator = ",", omit = {is_2nd_child}}}, block = {}, parameters = {both = {separator = ","}, split = {last_separator = true}}}, odin = {tuple_type = {both = {separator = ","}, split = {last_separator = true}}, parameters = {both = {separator = ","}, split = {last_separator = true}}, call_expression = {both = {separator = ","}, split = {last_separator = true}}}}})
 end
-local function _11_()
+local function _13_()
   vim.cmd.Abolish("stirng", "string")
   return vim.cmd.Abolish("skirve", "skrive")
 end
-vim.defer_fn(_11_, 0)
+vim.defer_fn(_13_, 0)
 do
-  local _let_12_ = require("Comment")
-  local setup = _let_12_["setup"]
-  local _let_13_ = require("Comment.ft")
-  local set_ft = _let_13_["set"]
+  local _let_14_ = require("Comment")
+  local setup = _let_14_["setup"]
+  local _let_15_ = require("Comment.ft")
+  local set_ft = _let_15_["set"]
   setup()
   set_ft("fennel", ";; %s")
   set_ft("scheme", ";; %s")
@@ -152,11 +160,11 @@ require("falkjet.run")
 require("falkjet.dap")
 require("falkjet.lsp")
 require("falkjet.treesitter")
-local function _14_()
+local function _16_()
   vim.bo.lisp = true
   return nil
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _14_, pattern = "fennel"})
+vim.api.nvim_create_autocmd("FileType", {callback = _16_, pattern = "fennel"})
 vim.g["g:conjure#client#fennel#aniseed#aniseed_module_prefix"] = "aniseed"
 vim.g["conjure#client#guile#socket#pipename"] = (vim.fn.getcwd() .. "/.guile-repl.socket")
 local sexp = require("treesitter-sexp")
@@ -165,11 +173,11 @@ vim.keymap.set({"n", "i"}, "<M-S-l>", "<cmd>TSSexp slurp_right<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-h>", "<cmd>TSSexp slurp_left<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-j>", "<cmd>TSSexp barf_left<cr>")
 vim.keymap.set({"n", "i"}, "<M-S-k>", "<cmd>TSSexp barf_right<cr>")
-local function _15_()
+local function _17_()
   vim.bo.lisp = true
   return nil
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _15_, pattern = "clojure"})
+vim.api.nvim_create_autocmd("FileType", {callback = _17_, pattern = "clojure"})
 vim.g.vimtex_mappings_enabled = 0
 vim.g.vimtex_view_method = "zathura"
 vim.g.vimtex_quickfix_mode = 1
@@ -180,6 +188,7 @@ vim.g.zig_fmt_autosave = 0
 vim.filetype.add({extension = {c3 = "c3", c3i = "c3", c3t = "c3"}})
 vim.g.go_doc_keywordprg_enabled = 0
 vim.g.go_def_mapping_enabled = 0
+vim.g.go_fmt_autosave = 0
 do
   local obsidian = require("obsidian")
   obsidian.setup({workspaces = {{name = "Obsidian Vault", path = "~/Documents/Obsidian Vault"}}})
@@ -189,8 +198,8 @@ do
 end
 require("falkjet.bqn")
 require("falkjet.html-indent")
-local function _16_()
+local function _18_()
   return vim.keymap.set("n", "q", "<cmd>q<cr>", {buffer = true})
 end
-vim.api.nvim_create_autocmd("FileType", {callback = _16_, pattern = "help"})
+vim.api.nvim_create_autocmd("FileType", {callback = _18_, pattern = "help"})
 return vim.cmd("autocmd BufWritePost *.templ silent! !templ generate %")
