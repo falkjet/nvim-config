@@ -3,16 +3,6 @@ local neodev = require 'neodev'
 
 
 local servers = {
-  emmet_ls = {
-    filetypes = {
-      'html', 'javascript', 'typescript', 'javascriptreact',
-      'typescriptreact', 'svelte', 'gohtmltmpl', 'htmldjango', 'vue',
-      'templ', 'astro', 'php', 'css', 'xml', 'razor', 'heex',
-    },
-    init_options = {
-      jsx = { options = { ['markup.attributes'] = { class = 'class' } } },
-    },
-  },
   hls = {
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
     cmd = { "haskell-language-server-wrapper", "--lsp" },
@@ -30,13 +20,10 @@ local servers = {
     root_dir = require 'lspconfig.util'.root_pattern('deno.json', 'deno.jsonc'),
     single_file_support = false,
   },
-  ts_ls = {},
   svelte = {},
   jsonls = {},
   templ = {},
-  gleam = {},
   erlangls = {},
-  elixirls = { cmd = { 'elixir-ls' } },
   efm = {
     init_options = {
       documentFormatting = true,
