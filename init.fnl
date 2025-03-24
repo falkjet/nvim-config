@@ -13,7 +13,7 @@
 ;; Options ;;
 ;;;;;;;;;;;;;
 (set vim.g.mapleader " ")
-(set vim.g.maplocalleader " ")
+(set vim.g.maplocalleader "\\")
 (set vim.o.hlsearch false)
 (set vim.wo.number true)
 (set vim.wo.relativenumber true)
