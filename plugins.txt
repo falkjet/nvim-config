@@ -19,6 +19,7 @@ wbthomason/packer.nvim:ea0cc3c59f67c440c5ff0bbe4fb9420f4350b9a3
 nvim-neotest/nvim-nio:a428f309119086dc78dd4b19306d2d67be884eee
 j-hui/fidget.nvim:d855eed8a06531a7e8fd0684889b2943f373c469
 nvim-lua/plenary.nvim:2d9b06177a975543726ce5c73fca176cedbffe9d
+neovim/pynvim:dc030e6ea6c0134d0ebac7386abfe15e050c1201
 
 # Navigation
 nvim-telescope/telescope.nvim:df534c3042572fb958586facd02841e10186707c
@@ -98,3 +99,5 @@ ziglang/zig.vim:15d6510b77a4efbb6ffcb151ed7e2ce4de4d06f6
 kaarmu/typst.vim:4d18ced62599ffe5b3c0e5e49566d5456121bc02
 Olical/nfnl:60b2ab7051cf2f631bc03274b56061136d1f9177
 nushell/tree-sitter-nu:082a7c7df7db460da6b280c9f902bf2b19a2f423
+whonore/Coqtail:77ff3fa0b0eb0453ca52467c53004330f010e3f0
+edwinb/idris2-vim:964cebee493c85f75796e4f4e6bbb4ac54e2da9e
