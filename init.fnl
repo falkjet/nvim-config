@@ -44,8 +44,12 @@
 ;; Git keybinds
 (nmap "<leader>gd" "<cmd>Gvdiffsplit<cr>" "[D]iff current file")
 (nmap "<leader>gs" "<cmd>Gitsigns stage_hunk<cr>" "[G]it [S]tage hunk")
+(nmap "<leader>gp" "<cmd>Gitsigns preview_hunk<cr>" "[G]it [S]tage hunk")
+(nmap "<leader>gr" "<cmd>Gitsigns preview_hunk<cr>" "[G]it [S]tage hunk")
 (nmap "<leader>gS" "<cmd>G stage %<cr>" "[G]it [S]tage current file")
 (nmap "<leader>gc" "<cmd>G commit<cr>" "[G]it [C]ommit")
+(nmap "]g" "<cmd>Gitsigns next_hunk<cr>")
+(nmap "[g" "<cmd>Gitsigns prev_hunk<cr>")
 
 ;;;;;;;;;;;;;;;;;;;
 ;; Configuration ;;
