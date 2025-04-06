@@ -66,6 +66,9 @@
 ;; Show keybind help
 ((. (require :which-key) :setup))
 
+(let [leap (require :leap)]
+  (leap.create_default_mappings))
+
 ;; Vim tmux navigator
 (vim.keymap.set [:n :i :t] "<m-h>" "<cmd>TmuxNavigateLeft<cr>" {:desc "Left Pane"})
 (vim.keymap.set [:n :i :t] "<m-j>" "<cmd>TmuxNavigateDown<cr>" {:desc "Below Pane"})

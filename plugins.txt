@@ -56,6 +56,7 @@ nvim-telescope/telescope-ui-select.nvim:6e51d7da30bd139a6950adf2a47fda6df9fa06d2
 folke/which-key.nvim:8badb359f7ab8711e2575ef75dfe6fbbd87e4821
 stevearc/oil.nvim:ccab9d5e09e2d0042fbbe5b6bd05e82426247067
 nvim-tree/nvim-web-devicons:19d257cf889f79f4022163c3fbb5e08639077bd8
+ggandor/leap.nvim:346a16ef942635a8ca5ff92e603d07e7e8be6cbe
 
 # Editing
 Wansmer/treesj:0d81326b5afd36babe7dd480aabbb0b05f33e688

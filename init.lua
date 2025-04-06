@@ -39,6 +39,10 @@ nmap("[g", "<cmd>Gitsigns prev_hunk<cr>")
 require("neoconf").setup()
 require("neodev").setup()
 require("which-key").setup()
+do
+  local leap = require("leap")
+  leap.create_default_mappings()
+end
 vim.keymap.set({"n", "i", "t"}, "<m-h>", "<cmd>TmuxNavigateLeft<cr>", {desc = "Left Pane"})
 vim.keymap.set({"n", "i", "t"}, "<m-j>", "<cmd>TmuxNavigateDown<cr>", {desc = "Below Pane"})
 vim.keymap.set({"n", "i", "t"}, "<m-k>", "<cmd>TmuxNavigateUp<cr>", {desc = "Above Pane"})
@@ -116,7 +120,7 @@ require("falkjet.folding")
 do
   local au = require("ultimate-autopair")
   local function _9_(fun)
-    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:167")
+    _G.assert((nil ~= fun), "Missing argument fun on /home/falk/.config/nvim/init.fnl:170")
     return ((vim.o.ft ~= "fennel") and not fun.in_lisp())
   end
   au.setup({cr = {enable = true, autoclose = true, conf = {cond = _9_}}})
