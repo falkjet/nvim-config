@@ -156,6 +156,8 @@ do
   set_ft("nasm", ";; %s")
   set_ft("templ", "// %s")
 end
+vim.api.nvim_create_user_command("FixTrailingSpace", "%s/\\s\\+$//g", {})
+vim.api.nvim_create_user_command("MakeExecutable", "w | !chmod +x %", {})
 vim.filetype.add({extension = {cshtml = "razor", maude = "maude", templ = "templ", tmpl = "gohtmltmpl", bqn = "bqn"}})
 vim.opt.sw = 4
 vim.opt.ts = 4

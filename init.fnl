@@ -229,6 +229,10 @@
   (set-ft :nasm ";; %s")
   (set-ft :templ "// %s"))
 
+;; useful commands
+(vim.api.nvim_create_user_command :FixTrailingSpace "%s/\\s\\+$//g" {})
+(vim.api.nvim_create_user_command :MakeExecutable "w | !chmod +x %" {})
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; Language Support ;;
 ;;;;;;;;;;;;;;;;;;;;;;
