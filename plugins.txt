@@ -102,3 +102,4 @@ Olical/nfnl:60b2ab7051cf2f631bc03274b56061136d1f9177
 nushell/tree-sitter-nu:082a7c7df7db460da6b280c9f902bf2b19a2f423
 whonore/Coqtail:77ff3fa0b0eb0453ca52467c53004330f010e3f0
 edwinb/idris2-vim:964cebee493c85f75796e4f4e6bbb4ac54e2da9e
+mattn/emmet-vim:6c511a8d7d2863066f32e25543e2bb99d505172c
