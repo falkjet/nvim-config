@@ -8,7 +8,7 @@ local function cmap(key, action, description)
   return vim.keymap.set("c", key, action, {desc = description})
 end
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.relativenumber = true

@@ -48,6 +48,7 @@ tpope/vim-sleuth:be69bff86754b1aa5adcbb527d7fcd1635a84080
 nvim-treesitter/nvim-treesitter:5a2ff8b7ca5470b1011ed82ef3fdd53139ffc467
 tpope/vim-jdaddy:23b67752cb869dd9c8f3109173b69aa96a1f3acf
 quangnguyen30192/cmp-nvim-tags:e126a09ef49f0611c127dea851fa0052aa223f15
+clojure-vim/vim-jack-in:45e5293cff0802a51dbed31a9b0141b0f80e2952
 
 # User interface
 nvim-telescope/telescope-ui-select.nvim:6e51d7da30bd139a6950adf2a47fda6df9fa06d2
