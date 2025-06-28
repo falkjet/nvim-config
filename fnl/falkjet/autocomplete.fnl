@@ -20,5 +20,6 @@
                  "<S-Tab>" (m on-s-tab [:i :s])})
      :sources [{:name :conjure}
                {:name :buffer}
+               {:name :nvim_lsp}
                {:name :tags}]}))
 
