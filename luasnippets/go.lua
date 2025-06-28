@@ -108,7 +108,17 @@ local function smartparen(args, parent)
 	})
 end
 
+local function dashes(args)
+  return ("-"):rep(args[1][1]:len())
+end
+
 return {
+	s('banner', fmta([[
+		//-<>-//
+		// <> //
+		//-<>-//
+	]], { f(dashes, 1), i(1), f(dashes, 1) })),
+
 	s({ trig = 'struct (%a*) ', regTrig = true, snippetType = 'autosnippet', wordTrig = false },
 		fmta("type <> struct ", { f(function(_, snip) return snip.captures[1] end) })),
 	s({ trig = 'interface (%a*) ', regTrig = true, snippetType = 'autosnippet', wordTrig = false },
