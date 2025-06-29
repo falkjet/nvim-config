@@ -2,14 +2,33 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local m = cmp.mapping
-local function on_tab(fallback)
-  local _1_
-  if luasnip.expand_or_locally_jumpable() then
-    _1_ = luasnip.expand_or_jump
-  else
-    _1_ = fallback
+local function make_set(...)
+  local args = {...}
+  local tbl_16_auto = {}
+  for _, val in ipairs(args) do
+    local k_17_auto, v_18_auto = val, true
+    if ((k_17_auto ~= nil) and (v_18_auto ~= nil)) then
+      tbl_16_auto[k_17_auto] = v_18_auto
+    else
+    end
   end
-  return _1_()
+  return tbl_16_auto
+end
+local emmet_filetypes = make_set("html", "eruby", "vue", "templ")
+local function emmet_expandable_3f()
+  return (emmet_filetypes[vim.o.ft] and (vim.fn["emmet#isExpandable"]() == 1))
+end
+local function emmet_expand()
+  return vim.cmd("silent execute \"normal \\<Plug>(emmet-expand-abbr)\"")
+end
+local function on_tab(fallback)
+  if luasnip.expand_or_locally_jumpable() then
+    return luasnip.expand_or_jump()
+  elseif emmet_expandable_3f() then
+    return emmet_expand()
+  else
+    return fallback()
+  end
 end
 local function on_s_tab(fallback)
   if luasnip.locally_jumpable(-1) then
