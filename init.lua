@@ -199,6 +199,7 @@ vim.filetype.add({extension = {c3 = "c3", c3i = "c3", c3t = "c3"}})
 vim.g.go_doc_keywordprg_enabled = 0
 vim.g.go_def_mapping_enabled = 0
 vim.g.go_fmt_autosave = 0
+require("falkjet.rails")
 do
   local obsidian = require("obsidian")
   obsidian.setup({workspaces = {{name = "Obsidian Vault", path = "~/Documents/Obsidian Vault"}}})

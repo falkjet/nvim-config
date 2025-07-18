@@ -320,6 +320,9 @@
 (set vim.g.go_def_mapping_enabled 0)
 (set vim.g.go_fmt_autosave 0)
 
+;; Ruby
+(require :falkjet.rails)
+
 ;; Obsidian markdown notes
 (let [obsidian (require :obsidian)]
   (obsidian.setup
