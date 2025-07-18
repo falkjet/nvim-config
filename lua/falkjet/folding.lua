@@ -1,7 +1,20 @@
 vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldexpr = [[luaeval(printf("require'falkjet.folding'.foldexpr(%d)", v:lnum))]]
 vim.o.foldlevelstart = 100
 vim.opt.foldtext = [[ luaeval('foldtext_function')() ]]
+
+local ts_fold = require"nvim-treesitter.fold"
+local function foldexpr(line)
+	local indicator = ts_fold.get_fold_indic(line)
+	if indicator == "0" and
+		line > 1 and
+		ts_fold.get_fold_indic(line - 1) == "1" and
+		vim.api.nvim_buf_get_lines(0, line-1, line, false)[1] == ''
+	then
+		return "1"
+	end
+	return indicator
+end
 
 vim.keymap.set("n", "z0", function() vim.o.foldlevel = 0 end)
 vim.keymap.set("n", "z1", function() vim.o.foldlevel = 1 end)
@@ -83,3 +96,7 @@ function foldtext_function()
 
 	return result
 end
+
+return {
+	foldexpr = foldexpr
+}
