@@ -10,7 +10,9 @@ local fmt = require 'luasnip.extras.fmt'.fmt
 local fmta = require 'luasnip.extras.fmt'.fmta
 local rep = require 'luasnip.extras'.rep
 
-
+local function copy(args)
+	return args[1]
+end
 
 ---@param node TSNode
 ---@return string
@@ -155,4 +157,16 @@ return {
         <>
     }
   ]], { i(1), i(0) })),
+	s('enum', fmta([[
+		//go:generate stringer -trimprefix <name_copy> -type <name_copy>
+		type <name> int
+		const (
+			<first> <name_copy> = iota<done>
+		)
+	]], {
+		name = i(1),
+		name_copy = f(copy, 1),
+		first = i(2),
+		done = i(0),
+	}))
 }
