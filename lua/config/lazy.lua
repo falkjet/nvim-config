@@ -15,5 +15,18 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require 'lazy'.setup {
+  spec = {
+    {import = "config.plugins"},
+    {"Olical/nfnl", ft="fennel"},
+  },
+  install = {
+    colorscheme = { "habamax" }
+  }
+}
 
-
+-- (let [lazy (require :lazy)]
+--   (lazy.setup
+--     {:spec [{:import :config.plugins}
+-- 	    {1 :Olical/nfnl :ft :fennel}]
+--      :install {:colorscheme [:habamax]}}))

@@ -1,6 +1,6 @@
 -- [nfnl] init.fnl
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+vim.opt.lispoptions:append("expr:1")
 require("config.lazy")
-local lazy = require("lazy")
-return lazy.setup({spec = {{"Olical/nfnl"}}, install = {colorscheme = {"habamax"}}})
+return vim.cmd.colorscheme("tokyonight")
