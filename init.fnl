@@ -8,4 +8,4 @@
 (require :config.lazy) ; Bootstrap lazy
 (vim.cmd.colorscheme :tokyonight)
 
-
+(vim.keymap.set :i "jj" "<esc>")
