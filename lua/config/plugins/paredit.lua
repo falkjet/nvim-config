@@ -1,0 +1,2 @@
+-- [nfnl] fnl/config/plugins/paredit.fnl
+return {{"julienvincent/nvim-paredit", ft = {"fennel", "lisp", "clojure", "scheme", "query"}, opts = {indent = {enabled = true}}, keys = {{"<M-S-L>", "<cmd>lua require 'nvim-paredit'.api.slurp_forwards()<cr>", "Slurp forwards"}, {"<M-S-H>", "<cmd>lua require 'nvim-paredit'.api.slurp_backwards()<cr>", "Slurp backwards"}, {"<M-S-K>", "<cmd>lua require 'nvim-paredit'.api.barf_forwards()<cr>", "Barf forwards"}, {"<M-S-J>", "<cmd>lua require 'nvim-paredit'.api.barf_backwards()<cr>", "Barf backwards"}}}}
