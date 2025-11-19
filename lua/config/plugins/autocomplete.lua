@@ -39,6 +39,15 @@ local function cmp_opts()
     end
   end
   local mappings = {["<C-n>"] = m.select_next_item(), ["<C-p>"] = m.select_prev_item(), ["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-Space>"] = m.complete({}), ["<Tab>"] = m(on_tab, {"i", "s"}), ["<C-k>"] = m.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}), ["<S-Tab>"] = m(on_s_tab, {"i", "s"})}
-  return {mapping = m.preset.insert(mappings), sources = {{name = "buffer"}, {name = "conjure"}, {name = "tags"}}}
+  return {mapping = m.preset.insert(mappings), sources = {{name = "buffer"}, {name = "conjure"}, {name = "tags"}, {name = "luasnip"}}}
 end
-return {"hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp", "PaterJason/cmp-conjure", "quangnguyen30192/cmp-nvim-tags", "mattn/emmet-vim", {"L3MON4D3/luasnip"}, {"hrsh7th/nvim-cmp", opts = cmp_opts}}
+local function luasnip_config()
+  local luasnip = require("luasnip")
+  local from_lua = require("luasnip.loaders.from_lua")
+  from_lua.lazy_load({})
+  luasnip.filetype_extend("markdown", {"texmath"})
+  luasnip.filetype_extend("tex", {"texmath"})
+  luasnip.filetype_extend("templ", {"go"})
+  return luasnip.config.setup({enable_autosnippets = true, store_selection_keys = "<Tab>", update_events = "TextChanged,TextChangedI"})
+end
+return {"hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp", "PaterJason/cmp-conjure", "quangnguyen30192/cmp-nvim-tags", "mattn/emmet-vim", "saadparwaiz1/cmp_luasnip", {"L3MON4D3/luasnip", config = luasnip_config}, {"hrsh7th/nvim-cmp", opts = cmp_opts}}

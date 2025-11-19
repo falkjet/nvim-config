@@ -46,13 +46,28 @@
   {:mapping (m.preset.insert mappings)
    :sources [{:name :buffer}
 	     {:name :conjure}
-	     {:name :tags}]})
+	     {:name :tags}
+	     {:name :luasnip}]})
+
+(fn luasnip-config []
+  (local luasnip (require :luasnip))
+  (local from-lua (require :luasnip.loaders.from_lua))
+  (from-lua.lazy_load {})
+  (luasnip.filetype_extend :markdown [:texmath])
+  (luasnip.filetype_extend :tex [:texmath])
+  (luasnip.filetype_extend :templ [:go])
+  (luasnip.config.setup
+    {:enable_autosnippets true
+     :store_selection_keys "<Tab>"
+     :update_events "TextChanged,TextChangedI"}))
 
 [:hrsh7th/cmp-buffer
  :hrsh7th/cmp-nvim-lsp
  :PaterJason/cmp-conjure
  :quangnguyen30192/cmp-nvim-tags
  :mattn/emmet-vim
- {1 :L3MON4D3/luasnip}
+ :saadparwaiz1/cmp_luasnip
+ {1 :L3MON4D3/luasnip
+  :config luasnip-config}
  {1 :hrsh7th/nvim-cmp
   :opts cmp-opts}]
