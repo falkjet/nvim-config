@@ -8,7 +8,8 @@
  {1 :tpope/vim-repeat}
  {1 :tpope/vim-rhubarb}
  {1 :tpope/vim-sleuth}
- {1 :tpope/vim-speeddating}
+ {1 :tpope/vim-speeddating
+  :keys ["<c-a>" "<c-x>"]}
  {1 :tpope/vim-surround
   :keys [{1 :ms 2 "<Plug>VSurround" :mode :v}
 	 {1 :md 2 "<Plug>Dsurround"}
