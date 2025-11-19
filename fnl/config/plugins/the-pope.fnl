@@ -2,7 +2,7 @@
  {1 :tpope/vim-fugitive
   :cmd [:Gedit :Gsplit :Gdiffsplit :Gvdiffsplit
 	:Gread :Gwrite :Ggrep :Glgrep :GMove :GRename
-	:GBrowse]}
+	:GBrowse :Git :G]}
  {1 :tpope/vim-jdaddy
   :ft [:json :jsonc]}
  {1 :tpope/vim-repeat}
