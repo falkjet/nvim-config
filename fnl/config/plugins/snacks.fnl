@@ -4,7 +4,7 @@
  :opts (fn []
 	 {:bigfile {:enabled true}
           :dashboard {:enabled true}
-          :explorer {:enabled true}
+          :explorer {:enabled true :replace_netrw false}
 	  :image {:enabled true}
           :indent {:enabled false}
           :input {:enabled true}
