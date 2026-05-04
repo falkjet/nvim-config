@@ -3,6 +3,7 @@
   :cmd [:Boot :Clj :Lein]}
  {1 :Olical/conjure
   :ft [:fennel :clojure]
+  :dependencies [:PaterJason/cmp-conjure]
   :init (fn []
           (set vim.g.conjure#filetypes [:clojure :fennel]))
   :keys [["<leader>er" "<cmd>ConjureEvalRootForm<cr>"]
