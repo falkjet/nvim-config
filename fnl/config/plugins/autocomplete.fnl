@@ -10,7 +10,8 @@
     (collect [_ val (ipairs args)] (values val true)))
 
   (local emmet-filetypes
-    (make-set :html :eruby :vue :templ :heex :markdown))
+    (make-set :html :eruby :vue :templ :heex :markdown
+      :htmldjango :jinja))
 
   (fn emmet-expandable? []
     (and (. emmet-filetypes vim.o.ft)
@@ -44,7 +45,8 @@
      "<S-Tab>" (m on-s-tab [:i :s])})
 
   {:mapping (m.preset.insert mappings)
-   :sources [{:name :buffer}
+   :sources [{:name :nvim_lsp}
+	     {:name :buffer}
 	     {:name :conjure}
 	     {:name :tags}
 	     {:name :luasnip}]})
