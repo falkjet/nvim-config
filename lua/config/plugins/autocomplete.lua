@@ -38,7 +38,7 @@ local function cmp_opts()
       return fallback()
     end
   end
-  local mappings = {["<C-n>"] = m.select_next_item(), ["<C-p>"] = m.select_prev_item(), ["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-Space>"] = m.complete({}), ["<Tab>"] = m(on_tab, {"i", "s"}), ["<C-k>"] = m.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}), ["<S-Tab>"] = m(on_s_tab, {"i", "s"})}
+  local mappings = {["<C-n>"] = m.select_next_item(), ["<C-p>"] = m.select_prev_item(), ["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-Space>"] = m.complete({}), ["<Tab>"] = m(on_tab, {"i", "s"}), ["<C-k>"] = m.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}), ["<C-a>"] = m.confirm({select = true, behavior = cmp.ConfirmBehavior.Replace}), ["<S-Tab>"] = m(on_s_tab, {"i", "s"})}
   return {mapping = m.preset.insert(mappings), sources = {{name = "nvim_lsp"}, {name = "buffer"}, {name = "conjure"}, {name = "tags"}, {name = "luasnip"}}}
 end
 local function luasnip_config()

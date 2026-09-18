@@ -42,6 +42,8 @@
      "<Tab>" (m on-tab [:i :s])
      "<C-k>" (m.confirm {:select true
 			 :behavior cmp.ConfirmBehavior.Replace})
+     "<C-a>" (m.confirm {:select true
+			 :behavior cmp.ConfirmBehavior.Replace})
      "<S-Tab>" (m on-s-tab [:i :s])})
 
   {:mapping (m.preset.insert mappings)
