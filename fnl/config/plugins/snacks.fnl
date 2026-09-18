@@ -36,7 +36,7 @@
     :action ":qa"}
    {:icon " "
     :key "w"
-    :desc "Wim Wiki"
+    :desc "Vim Wiki"
     :action ":VimwikiIndex"}])
 
 
