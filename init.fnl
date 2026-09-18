@@ -10,6 +10,8 @@
 (set vim.o.shiftwidth 0)
 (set vim.o.tabstop 4)
 (set vim.o.exrc true)
+(set vim.o.smartcase true)
+(set vim.o.ignorecase true)
 (vim.opt.lispoptions:append "expr:1")
 
 (require :config.lazy) ; Bootstrap lazy
