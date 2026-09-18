@@ -31,6 +31,7 @@
 
 (vim.lsp.enable :gopls)
 (vim.lsp.enable :zls)
+(vim.lsp.enable :pylsp)
 
 (vim.filetype.add
   {:extension
