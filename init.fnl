@@ -21,6 +21,13 @@
 
 
 (vim.api.nvim_create_user_command :LspRename (fn [] (vim.lsp.buf.rename)) {})
+(vim.api.nvim_create_user_command :LspDefinition (fn [] (vim.lsp.buf.definition)) {})
+(vim.api.nvim_create_user_command :LspAction (fn [] (vim.lsp.buf.code_action)) {})
+(vim.api.nvim_create_user_command :LspRestart (fn [] (vim.cmd.lsp "restart")) {})
+(vim.api.nvim_create_user_command :LspFormat (fn [] (vim.lsp.buf.format)) {})
+(vim.api.nvim_create_user_command :LspImplementation (fn [] (vim.lsp.buf.implementation)))
+
+(vim.diagnostic.config {:virtual_text true})
 
 (vim.lsp.enable :gopls)
 (vim.lsp.enable :zls)
