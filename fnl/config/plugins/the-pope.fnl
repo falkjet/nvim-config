@@ -16,8 +16,9 @@
   :keys ["<c-a>" "<c-x>"]}
  {1 :tpope/vim-surround
   :keys [{1 :ms 2 "<Plug>VSurround" :mode :v}
-	 {1 :md 2 "<Plug>Dsurround"}
-	 {1 :mr 2 "<Plug>Csurround"}]}
+         {1 :md 2 "<Plug>Dsurround"}
+         {1 :mr 2 "<Plug>Csurround"}
+         {1 :ms 2 "<Plug>Ysurround"}]}
  {1 :tpope/vim-tbone
   :cmd [:Tmux :Tyank :Tput :Twrite :Tattach]}
  {1 :tpope/vim-dispatch
