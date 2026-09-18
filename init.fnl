@@ -42,3 +42,9 @@
     :bqn    :bqn
     :cmp    :compila
     :nl     :nomenlang}})
+
+(vim.cmd "Abolish challang{e,es,ing,ed,er} challeng{}")
+(vim.cmd "Abolish stirng string")
+(vim.cmd "Abolish {despa,sepe}rat{e,es,ed,ing,ely,ion,ions,or}  {despe,sepa}rat{}")
+(vim.cmd "Abolish ambiguoes ambiguous")
+(vim.cmd "Abolish ambiguos ambiguous")
