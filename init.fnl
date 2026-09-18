@@ -48,3 +48,6 @@
 (vim.cmd "Abolish {despa,sepe}rat{e,es,ed,ing,ely,ion,ions,or}  {despe,sepa}rat{}")
 (vim.cmd "Abolish ambiguoes ambiguous")
 (vim.cmd "Abolish ambiguos ambiguous")
+
+(vim.keymap.set :n "<leader>l" (fn [] (vim.cmd.Lexicon (vim.fn.expand "<cword>"))) {})
+(vim.cmd "autocmd BufWritePost *.templ silent! !templ generate %")
