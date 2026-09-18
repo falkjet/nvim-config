@@ -24,15 +24,15 @@ local function filetype(ft)
 end
 
 local function texcmd(command, symbol)
-	return s({ trig = command, wordTrig = false, hidden = true }, t(symbol))
+	return s({ trig = command, wordTrig = false, hidden = true }, { t(symbol) })
 end
 
 local function texsym(trig, symbol)
-	return s({ trig = trig, wordTrig = false, hidden = true }, t(symbol))
+	return s({ trig = trig, wordTrig = false, hidden = true }, { t(symbol) })
 end
 
 local function texsymw(trig, symbol)
-	return s({ trig = trig, wordTrig = true, hidden = true }, t(symbol))
+	return s({ trig = trig, wordTrig = true, hidden = true }, { t(symbol) })
 end
 
 return {
@@ -96,12 +96,15 @@ return {
 	texcmd('\\superset', '⊃'),
 	texcmd('\\prec', '≺'),
 	texcmd('\\succ', '≻'),
+	texcmd('\\Leftarrow', '⇐'),
 	texcmd('\\rightarrow', '→'),
 	texcmd('\\Rightarrow', '⇒'),
 	texcmd('\\leftarrow', '←'),
 	texcmd('\\rightsquigarrow', '⇝'),
 	texcmd('\\leftsquigarrow', '⇝'),
 	texcmd('\\leftrightsquigarrow', '↭'),
+	texcmd('\\downarrow', '↓'),
+	texcmd('\\da', '↓'),
 	texcmd('\\mapsto', '↦'),
 	texcmd('\\vdash', '⊢'),
 	texcmd('\\models', '⊧'),
@@ -120,6 +123,8 @@ return {
 	texcmd('\\forall', '∀'),
 	texcmd('\\hline', '────────────────────────────────────────────────────────────────────────────────'),
 
+	texsym('≤', '⇐'),
+	texsym('⇐', '≤'),
 	texsym('...', '…'),
 	texsym('[]', '□'),
 	texsym('<>', '◇'),
@@ -173,41 +178,41 @@ return {
 	texsym('NN', 'ℕ'),
 
 	s({ trig = '([-][-][-][-]*)', trigEngine = 'pattern', hidden = true },
-		f(function(_, snip) return string.rep("─", snip.captures[1]:len()) end)),
-	s({ trig = '^n+1', wordTrig = false }, t 'ⁿ⁺¹'),
-	s({ trig = '^n-1', wordTrig = false }, t 'ⁿ⁻¹'),
-	s({ trig = '^-1', wordTrig = false }, t '⁻¹'),
+		{ f(function(_, snip) return string.rep("─", snip.captures[1]:len()) end) }),
+	s({ trig = '^n+1', wordTrig = false }, { t 'ⁿ⁺¹' }),
+	s({ trig = '^n-1', wordTrig = false }, { t 'ⁿ⁻¹' }),
+	s({ trig = '^-1', wordTrig = false },  { t '⁻¹' }),
 
-	s({ trig = '^0', wordTrig = false }, t'⁰'),
-	s({ trig = '^1', wordTrig = false }, t'¹'),
-	s({ trig = '^2', wordTrig = false }, t'²'),
-	s({ trig = '^3', wordTrig = false }, t'³'),
-	s({ trig = '^4', wordTrig = false }, t'⁴'),
-	s({ trig = '^5', wordTrig = false }, t'⁵'),
-	s({ trig = '^6', wordTrig = false }, t'⁶'),
-	s({ trig = '^7', wordTrig = false }, t'⁷'),
-	s({ trig = '^8', wordTrig = false }, t'⁸'),
-	s({ trig = '^9', wordTrig = false }, t'⁹'),
-	s({ trig = '^+', wordTrig = false }, t'⁺'),
-	s({ trig = '^-', wordTrig = false }, t'⁻'),
-	s({ trig = '^=', wordTrig = false }, t'⁼'),
-	s({ trig = '^(', wordTrig = false }, t'⁽'),
-	s({ trig = '^)', wordTrig = false }, t'⁾'),
+	s({ trig = '^0', wordTrig = false }, { t'⁰' }),
+	s({ trig = '^1', wordTrig = false }, { t'¹' }),
+	s({ trig = '^2', wordTrig = false }, { t'²' }),
+	s({ trig = '^3', wordTrig = false }, { t'³' }),
+	s({ trig = '^4', wordTrig = false }, { t'⁴' }),
+	s({ trig = '^5', wordTrig = false }, { t'⁵' }),
+	s({ trig = '^6', wordTrig = false }, { t'⁶' }),
+	s({ trig = '^7', wordTrig = false }, { t'⁷' }),
+	s({ trig = '^8', wordTrig = false }, { t'⁸' }),
+	s({ trig = '^9', wordTrig = false }, { t'⁹' }),
+	s({ trig = '^+', wordTrig = false }, { t'⁺' }),
+	s({ trig = '^-', wordTrig = false }, { t'⁻' }),
+	s({ trig = '^=', wordTrig = false }, { t'⁼' }),
+	s({ trig = '^(', wordTrig = false }, { t'⁽' }),
+	s({ trig = '^)', wordTrig = false }, { t'⁾' }),
 
-	s({ trig = '_0', wordTrig = false }, t'₀'),
-	s({ trig = '_1', wordTrig = false }, t'₁'),
-	s({ trig = '_2', wordTrig = false }, t'₂'),
-	s({ trig = '_3', wordTrig = false }, t'₃'),
-	s({ trig = '_4', wordTrig = false }, t'₄'),
-	s({ trig = '_5', wordTrig = false }, t'₅'),
-	s({ trig = '_6', wordTrig = false }, t'₆'),
-	s({ trig = '_7', wordTrig = false }, t'₇'),
-	s({ trig = '_8', wordTrig = false }, t'₈'),
-	s({ trig = '_9', wordTrig = false }, t'₉'),
-	s({ trig = '_n', wordTrig = false }, t'ₙ'),
-	s({ trig = '_k', wordTrig = false }, t'ₖ'),
-	s({ trig = '_+', wordTrig = false }, t'₊'),
-	s({ trig = '_-', wordTrig = false }, t'₋'),
+	s({ trig = '_0', wordTrig = false }, { t'₀' }),
+	s({ trig = '_1', wordTrig = false }, { t'₁' }),
+	s({ trig = '_2', wordTrig = false }, { t'₂' }),
+	s({ trig = '_3', wordTrig = false }, { t'₃' }),
+	s({ trig = '_4', wordTrig = false }, { t'₄' }),
+	s({ trig = '_5', wordTrig = false }, { t'₅' }),
+	s({ trig = '_6', wordTrig = false }, { t'₆' }),
+	s({ trig = '_7', wordTrig = false }, { t'₇' }),
+	s({ trig = '_8', wordTrig = false }, { t'₈' }),
+	s({ trig = '_9', wordTrig = false }, { t'₉' }),
+	s({ trig = '_n', wordTrig = false }, { t'ₙ' }),
+	s({ trig = '_k', wordTrig = false }, { t'ₖ' }),
+	s({ trig = '_+', wordTrig = false }, { t'₊' }),
+	s({ trig = '_-', wordTrig = false }, { t'₋' }),
 
 
 	-- s({ trig = '[\\^]([0-9+=n-])', regTrig = true, wordTrig = false, },
