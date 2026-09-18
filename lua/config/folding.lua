@@ -4,18 +4,18 @@ vim.o.foldmethod = 'expr'
 vim.o.foldlevelstart = 100
 vim.opt.foldtext = [[ luaeval('foldtext_function')() ]]
 
--- local ts_fold = require"nvim-treesitter.fold"
--- local function foldexpr(line)
--- 	local indicator = ts_fold.get_fold_indic(line)
--- 	if line > 1 and vim.api.nvim_buf_get_lines(0, line-1, line, false)[1] == '' then
--- 		local previous = ts_fold.get_fold_indic(line - 1):match("^%d+$")
--- 		local current = indicator:match("^%d+$")
--- 		if current and previous and tonumber(current) < tonumber(previous) then
--- 			return previous
--- 		end
--- 	end
--- 	return indicator
--- end
+local function foldexpr(line)
+	line = line or vim.v.lnum
+	local indicator = vim.treesitter.foldexpr(line)
+	if line > 1 and vim.api.nvim_buf_get_lines(0, line-1, line, false)[1] == '' then
+		local previous = vim.treesitter.foldexpr(line - 1):match("^%d+$")
+		local current = indicator:match("^%d+$")
+		if current and previous and tonumber(current) < tonumber(previous) then
+			return previous
+		end
+	end
+	return indicator
+end
 
 vim.keymap.set("n", "z0", function() vim.o.foldlevel = 0 end)
 vim.keymap.set("n", "zz", function() vim.o.foldlevel = 0 end)
